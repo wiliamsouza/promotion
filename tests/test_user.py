@@ -10,7 +10,7 @@ def test_birthday_is_today():
     date = datetime.date.today()
     user = MagicMock()
     birthday = PropertyMock(return_value=date)
-    type(user).date_of_birth = birthday
+    type(user).birthday = birthday
     store = MagicMock()
     store.user.return_value = user
     # TODO: Change to use mock.patch after it exists
@@ -28,7 +28,7 @@ def test_birthday_is_not_today():
     date = datetime.datetime.strptime("1981-06-06", "%Y-%m-%d").date()
     user = MagicMock()
     birthday = PropertyMock(return_value=date)
-    type(user).date_of_birth = birthday
+    type(user).birthday = birthday
     store = MagicMock()
     store.user.return_value = user
     # TODO: Change to use mock.patch after it exists
