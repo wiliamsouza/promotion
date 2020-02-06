@@ -30,7 +30,7 @@ class DiscountUseCase(Protocol):
     "Domain interface for discount bussines logic."
 
     def __init__(
-        self, store: DiscountDataStore, holiday: "HolidayUseCase", user: "UserUseCase"
+        self, product: "ProductUseCase", holiday: "HolidayUseCase", user: "UserUseCase"
     ) -> None:
         ...
 
