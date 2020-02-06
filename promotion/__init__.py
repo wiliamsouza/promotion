@@ -4,14 +4,14 @@ from typing import Dict
 from typing_extensions import Protocol
 
 
-class DiscountDataStore(Protocol):
-    "Data store interface for discounts."
+class ProductDataStore(Protocol):
+    "Database interface for product entities."
 
     def __init__(self, database) -> None:
         ...
 
-    def discount_product_and_user(self, product_id, user_id) -> Dict:
-        "Retrieve discount for the given user and product ID."
+    def product(self, product_id, user_id) -> Dict:
+        "Retrieve product for the given product and user ID."
         ...
 
 
