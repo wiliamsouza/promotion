@@ -50,6 +50,17 @@ class HolidayUseCase(Protocol):
         ...
 
 
+class ProductUseCase(Protocol):
+    "Domain interface for discount by product and user bussines logic."
+
+    def __init__(self, store: ProductDataStore) -> None:
+        ...
+
+    def percentage(self, product_id, user_id) -> Dict:
+        """Give discount by product and user combination."""
+        ...
+
+
 class UserUseCase(Protocol):
     "Domain interface for discount by user bussines logic."
 
