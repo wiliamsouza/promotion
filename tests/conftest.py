@@ -30,6 +30,7 @@ def connection():
 def session(connection):
     transaction = connection.begin()
     session = Session(bind=connection)
+    UserFactory._meta.sqlalchemy_session = session
     ProductFactory._meta.sqlalchemy_session = session
     yield session
     session.close()
