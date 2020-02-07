@@ -17,6 +17,6 @@ setup(
     ],
     extras_require={
         "dev": ["pylint", "mypy", "ipdb"],
-        "test": ["pytest", "pytest-cov", "factory_boy"],
+        "test": ["pytest", "pytest-cov", "factory_boy", "SQLAlchemy-Utils"],
     },
 )
