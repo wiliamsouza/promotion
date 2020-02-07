@@ -1,39 +1,32 @@
 """Tests for user use case implementations."""
 import datetime
-from unittest.mock import MagicMock, PropertyMock
+from unittest import mock
 from promotion.user import UserUseCase
 
 
-def test_birthday_is_today():
-
-    # This mocks the non exist UserDataStore
+@mock.patch("promotion.postgresql.user.UserDataStore")
+def test_birthday_is_today(store_mock):
     date = datetime.date.today()
-    user = MagicMock()
-    birthday = PropertyMock(return_value=date)
-    type(user).birthday = birthday
-    store = MagicMock()
-    store.user.return_value = user
-    # TODO: Change to use mock.patch after it exists
+    user = mock.MagicMock()
+    type(user).birthday = mock.PropertyMock(return_value=date)
+    store_mock.user.return_value = user
 
-    case = UserUseCase(store)
+    case = UserUseCase(store_mock)
 
     result = case.birthday(user.id)
 
     assert result == {"percentage": 5}
 
 
-def test_birthday_is_not_today():
-
-    # This mocks the non exist UserDataStore
+@mock.patch("promotion.postgresql.user.UserDataStore")
+def test_birthday_is_not_today(store_mock):
     date = datetime.datetime.strptime("1981-06-06", "%Y-%m-%d").date()
-    user = MagicMock()
-    birthday = PropertyMock(return_value=date)
+    user = mock.MagicMock()
+    birthday = mock.PropertyMock(return_value=date)
     type(user).birthday = birthday
-    store = MagicMock()
-    store.user.return_value = user
-    # TODO: Change to use mock.patch after it exists
+    store_mock.user.return_value = user
 
-    case = UserUseCase(store)
+    case = UserUseCase(store_mock)
 
     result = case.birthday(user.id)
 

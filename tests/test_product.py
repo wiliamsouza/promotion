@@ -1,31 +1,31 @@
 """Tests for product use case implementations."""
 import uuid
-from unittest.mock import MagicMock, PropertyMock
+from unittest import mock
 
 from promotion.product import ProductUseCase
 
 
-def test_product_exists():
-    user = MagicMock()
-
-    product = MagicMock()
-    percentage = PropertyMock(return_value=5)
+@mock.patch("promotion.postgresql.product.ProductDataStore")
+def test_product_exists(store_mock):
+    user = mock.MagicMock()
+    product = mock.MagicMock()
+    percentage = mock.PropertyMock(return_value=5)
     type(product).percentage = percentage
-    store = MagicMock()
-    store.product.return_value = product
-    case = ProductUseCase(store)
+    store_mock.product.return_value = product
+
+    case = ProductUseCase(store_mock)
 
     result = case.percentage(product.id, user.id)
 
     assert result == {"percentage": 5}
 
 
-def test_product_missing():
-    user = MagicMock()
+@mock.patch("promotion.postgresql.product.ProductDataStore")
+def test_product_missing(store_mock):
+    user = mock.MagicMock()
 
-    store = MagicMock()
-    store.product.return_value = None
-    case = ProductUseCase(store)
+    store_mock.product.return_value = None
+    case = ProductUseCase(store_mock)
 
     result = case.percentage(uuid.uuid4(), user.id)
 
