@@ -1,11 +1,11 @@
-"Protocol definitions"
+"Interface definitions using python typing."
 import datetime
 from typing import Dict
 from typing_extensions import Protocol
 
 
 class ProductDataStore(Protocol):
-    "Database interface for product entities."
+    "Data store interface for products."
 
     def __init__(self, database) -> None:
         ...
