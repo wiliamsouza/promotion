@@ -6,10 +6,10 @@ from promotion.postgresql.user import User, UserDataStore
 from ..factories import UserFactory
 
 
-def test_user_data_store(session):
+def test_user_data_store(database):
     user = UserFactory.create()
-    assert session.query(User).one()
-    store = UserDataStore(session)
+    assert database.query(User).one()
+    store = UserDataStore(database)
 
     result = store.user(user.id)
 

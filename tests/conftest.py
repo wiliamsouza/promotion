@@ -27,7 +27,7 @@ def connection():
 
 
 @pytest.fixture(scope="function")
-def session(connection):
+def database(connection):
     transaction = connection.begin()
     session = Session(bind=connection)
     UserFactory._meta.sqlalchemy_session = session
