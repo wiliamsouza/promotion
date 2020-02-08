@@ -12,7 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
 from promotion.grpc.v1alpha1 import promotion_api_pb2_grpc as service
-from promotion.grpc.server import DiscountServicer
+from promotion.grpc.server import PromotionServicer
 from promotion.discount import DiscountUseCase
 from promotion.holiday import HolidayUseCase
 from promotion.product import ProductUseCase
@@ -23,7 +23,7 @@ from promotion.postgresql.product import ProductDataStore
 
 @click.group()
 def cli():
-    """Discount daemon command line interface."""
+    """Promotion daemon command line interface."""
 
 
 @cli.group()
@@ -50,9 +50,9 @@ def _grpc():
 
     case = DiscountUseCase(product_case, holiday_case, user_case)
 
-    servicer = DiscountServicer(case)
+    servicer = PromotionServicer(case)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    service.add_DiscountAPIServicer_to_server(servicer, server)
+    service.add_PromotionAPIServicer_to_server(servicer, server)
     server.add_insecure_port("[::]:50051")
     server.start()
     server.wait_for_termination()

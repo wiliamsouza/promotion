@@ -8,8 +8,8 @@ from promotion.user import UserUseCase
 from promotion.postgresql.product import ProductDataStore
 from promotion.postgresql.user import UserDataStore
 from promotion.postgresql import Product as ProductModel, User
-from promotion.grpc.server import DiscountServicer
-from promotion.grpc.v1alpha1.promotion_api_pb2 import RetrieveDiscountRequest
+from promotion.grpc.server import PromotionServicer
+from promotion.grpc.v1alpha1.promotion_api_pb2 import RetrievePromotionRequest
 
 from ..factories import ProductFactory, UserFactory
 
@@ -32,11 +32,11 @@ def test_server(database):
 
     case = DiscountUseCase(product_case, holiday_case, user_case)
 
-    servicer = DiscountServicer(case)
+    servicer = PromotionServicer(case)
 
-    request = RetrieveDiscountRequest(
+    request = RetrievePromotionRequest(
         user_id=str(user.id), product_id=str(product.id).encode()
     )
-    result = servicer.RetrieveDiscount(request, None)
+    result = servicer.RetrievePromotion(request, None)
 
     assert result.discounts[0].pct == 10

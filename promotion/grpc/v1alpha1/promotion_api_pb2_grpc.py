@@ -4,8 +4,8 @@ import grpc
 from promotion.grpc.v1alpha1 import promotion_api_pb2 as promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2
 
 
-class DiscountAPIStub(object):
-  """DiscountAPI export products listings endpoints.
+class PromotionAPIStub(object):
+  """PromotionAPI export products listings endpoints.
   """
 
   def __init__(self, channel):
@@ -14,19 +14,19 @@ class DiscountAPIStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.RetrieveDiscount = channel.unary_unary(
-        '/promotion.grpc.v1alpha1.DiscountAPI/RetrieveDiscount',
-        request_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrieveDiscountRequest.SerializeToString,
-        response_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrieveDiscountResponse.FromString,
+    self.RetrievePromotion = channel.unary_unary(
+        '/promotion.grpc.v1alpha1.PromotionAPI/RetrievePromotion',
+        request_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionRequest.SerializeToString,
+        response_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionResponse.FromString,
         )
 
 
-class DiscountAPIServicer(object):
-  """DiscountAPI export products listings endpoints.
+class PromotionAPIServicer(object):
+  """PromotionAPI export products listings endpoints.
   """
 
-  def RetrieveDiscount(self, request, context):
-    """RetrieveDiscount.
+  def RetrievePromotion(self, request, context):
+    """RetrievePromotion.
     This enables discounts by product sku
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -34,14 +34,14 @@ class DiscountAPIServicer(object):
     raise NotImplementedError('Method not implemented!')
 
 
-def add_DiscountAPIServicer_to_server(servicer, server):
+def add_PromotionAPIServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'RetrieveDiscount': grpc.unary_unary_rpc_method_handler(
-          servicer.RetrieveDiscount,
-          request_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrieveDiscountRequest.FromString,
-          response_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrieveDiscountResponse.SerializeToString,
+      'RetrievePromotion': grpc.unary_unary_rpc_method_handler(
+          servicer.RetrievePromotion,
+          request_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionRequest.FromString,
+          response_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'promotion.grpc.v1alpha1.DiscountAPI', rpc_method_handlers)
+      'promotion.grpc.v1alpha1.PromotionAPI', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

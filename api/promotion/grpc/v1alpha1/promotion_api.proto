@@ -4,19 +4,19 @@ package promotion.grpc.v1alpha1;
 
 import "promotion/grpc/v1alpha1/discount.proto";
 
-// DiscountAPI export products listings endpoints.
-service DiscountAPI {
-  // RetrieveDiscount.
+// PromotionAPI export products listings endpoints.
+service PromotionAPI {
+  // RetrievePromotion.
   // This enables discounts by product sku
-  rpc RetrieveDiscount(RetrieveDiscountRequest) returns (RetrieveDiscountResponse) {
+  rpc RetrievePromotion(RetrievePromotionRequest) returns (RetrievePromotionResponse) {
   }
 }
 
-message RetrieveDiscountRequest {
+message RetrievePromotionRequest {
   string user_id = 1;
   string product_id = 2;
 }
 
-message RetrieveDiscountResponse {
+message RetrievePromotionResponse {
   repeated promotion.grpc.v1alpha1.Discount discounts = 1;
 }
