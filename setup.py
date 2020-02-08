@@ -19,4 +19,10 @@ setup(
         "dev": ["pylint", "mypy", "ipdb"],
         "test": ["pytest", "pytest-cov", "factory_boy", "SQLAlchemy-Utils"],
     },
+    entry_points={
+        "console_scripts": [
+            "promotiond=promotion.command.daemon:cli",
+            "promotionctl=promotion.command.control:cli",
+        ]
+    },
 )
