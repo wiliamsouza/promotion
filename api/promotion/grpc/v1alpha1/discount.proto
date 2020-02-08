@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package promotion.grpc.v1alpha1;
+
+// Discount message.
+message Discount {
+  float pct = 1;
+}

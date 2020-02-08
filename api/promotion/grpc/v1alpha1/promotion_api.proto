@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package promotion.grpc.v1alpha1;
+
+import "promotion/grpc/v1alpha1/discount.proto";
+
+// DiscountAPI export products listings endpoints.
+service DiscountAPI {
+  // RetrieveDiscount.
+  // This enables discounts by product sku
+  rpc RetrieveDiscount(RetrieveDiscountRequest) returns (RetrieveDiscountResponse) {
+  }
+}
+
+message RetrieveDiscountRequest {
+  string user_id = 1;
+  string product_id = 2;
+}
+
+message RetrieveDiscountResponse {
+  repeated promotion.grpc.v1alpha1.Discount discounts = 1;
+}
