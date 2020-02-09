@@ -2,7 +2,7 @@
 from promotion.grpc.v1alpha1.discount_pb2 import Discount
 from promotion.grpc.v1alpha1.promotion_api_pb2 import RetrievePromotionResponse
 from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIServicer
-from promotion import Promotion
+from promotion.protocol import Promotion
 
 
 class PromotionServicer(PromotionAPIServicer):
