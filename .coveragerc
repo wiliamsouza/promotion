@@ -1,3 +1,7 @@
 [report]
 omit =
     promotion/__init__.py
+    promotion/grpc/v1alpha1/discount_pb2.py
+    promotion/grpc/v1alpha1/promotion_api_pb2.py
+    promotion/grpc/v1alpha1/promotion_api_pb2_grpc.py
+
