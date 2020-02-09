@@ -15,10 +15,8 @@ from promotion.grpc.v1alpha1 import promotion_api_pb2_grpc as service
 from promotion.grpc.server import PromotionServicer
 from promotion.discount import DiscountUseCase
 from promotion.holiday import HolidayUseCase
-from promotion.product import ProductUseCase
 from promotion.user import UserUseCase
 from promotion.postgresql.user import UserDataStore
-from promotion.postgresql.product import ProductDataStore
 
 
 @click.group()
@@ -45,10 +43,7 @@ def _grpc():
     date = datetime.date.today()
     holiday_case = HolidayUseCase(date)
 
-    product_store = ProductDataStore(session)
-    product_case = ProductUseCase(product_store)
-
-    case = DiscountUseCase(product_case, holiday_case, user_case)
+    case = DiscountUseCase(holiday_case, user_case)
 
     servicer = PromotionServicer(case)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

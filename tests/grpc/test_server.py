@@ -1,25 +1,21 @@
 """Tests for grpc server implementation."""
 import datetime
+import uuid
 
 from promotion.discount import DiscountUseCase
 from promotion.holiday import HolidayUseCase
-from promotion.product import ProductUseCase
 from promotion.user import UserUseCase
-from promotion.postgresql.product import ProductDataStore
 from promotion.postgresql.user import UserDataStore
-from promotion.postgresql import Product as ProductModel, User
+from promotion.postgresql import User
 from promotion.grpc.server import PromotionServicer
 from promotion.grpc.v1alpha1.promotion_api_pb2 import RetrievePromotionRequest
 
-from ..factories import ProductFactory, UserFactory
+from ..factories import UserFactory
 
 
 def test_server(database):
     user = UserFactory.create()
     assert database.query(User).one()
-
-    product = ProductFactory.create(users=[user])
-    assert database.query(ProductModel).one()
 
     user_store = UserDataStore(database)
     user_case = UserUseCase(user_store)
@@ -27,15 +23,12 @@ def test_server(database):
     date = datetime.date.today()
     holiday_case = HolidayUseCase(date)
 
-    product_store = ProductDataStore(database)
-    product_case = ProductUseCase(product_store)
-
-    case = DiscountUseCase(product_case, holiday_case, user_case)
+    case = DiscountUseCase(holiday_case, user_case)
 
     servicer = PromotionServicer(case)
 
     request = RetrievePromotionRequest(
-        user_id=str(user.id), product_id=str(product.id).encode()
+        user_id=str(user.id), product_id=str(uuid.uuid4()).encode()
     )
     result = servicer.RetrievePromotion(request, None)
 

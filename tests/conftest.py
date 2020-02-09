@@ -8,7 +8,7 @@ from sqlalchemy_utils import database_exists, create_database
 
 from promotion.postgresql import Base
 
-from .factories import ProductFactory, UserFactory
+from .factories import UserFactory
 
 
 engine = create_engine(config("TEST_DATABASE_URL"), echo=True)
@@ -31,7 +31,6 @@ def database(connection):
     transaction = connection.begin()
     session = Session(bind=connection)
     UserFactory._meta.sqlalchemy_session = session
-    ProductFactory._meta.sqlalchemy_session = session
     yield session
     session.close()
     transaction.rollback()
