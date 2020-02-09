@@ -2,7 +2,7 @@
 import datetime
 import uuid
 
-from promotion.discount import DiscountUseCase
+from promotion.discount import PromotionUseCase
 from promotion.holiday import HolidayUseCase
 from promotion.user import UserUseCase
 from promotion.postgresql.user import UserDataStore
@@ -23,7 +23,7 @@ def test_server(database):
     date = datetime.date.today()
     holiday_case = HolidayUseCase(date)
 
-    case = DiscountUseCase(holiday_case, user_case)
+    case = PromotionUseCase(discounts=[holiday_case, user_case])
 
     servicer = PromotionServicer(case)
 
