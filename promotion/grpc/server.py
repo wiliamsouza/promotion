@@ -2,13 +2,13 @@
 from promotion.grpc.v1alpha1.discount_pb2 import Discount
 from promotion.grpc.v1alpha1.promotion_api_pb2 import RetrievePromotionResponse
 from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIServicer
-from promotion import DiscountUseCase
+from promotion import Promotion
 
 
 class PromotionServicer(PromotionAPIServicer):
     """Implements gRPC product API server"""
 
-    def __init__(self, use_case: DiscountUseCase) -> None:
+    def __init__(self, use_case: Promotion) -> None:
         self.use_case = use_case
 
     def RetrievePromotion(self, request, context):

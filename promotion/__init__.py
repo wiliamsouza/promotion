@@ -26,7 +26,7 @@ class DiscountUseCase(Protocol):
         ...
 
 
-class PromotionUseCase(Protocol):
+class Promotion(Protocol):
     "Domain interface for promotion bussines logic."
 
     def __init__(self, discounts: List[DiscountUseCase]) -> None:
