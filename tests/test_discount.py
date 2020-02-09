@@ -5,6 +5,7 @@ from unittest import mock
 
 from promotion.discount import PromotionUseCase
 from promotion.holiday import HolidayUseCase
+from promotion.settings.holiday import HolidayDataStore
 from promotion.user import UserUseCase
 
 
@@ -17,7 +18,8 @@ def test_discount_only_by_birthday(user_store_mock):
     user_case = UserUseCase(user_store_mock)
 
     date = datetime.datetime.strptime("1970-12-01", "%Y-%m-%d").date()
-    holiday_case = HolidayUseCase(date)
+    holiday_store = HolidayDataStore(date)
+    holiday_case = HolidayUseCase(holiday_store)
 
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
@@ -32,7 +34,8 @@ def test_discount_only_by_holiday(user_store_mock):
     user_case = UserUseCase(user_store_mock)
 
     date = datetime.date.today()
-    holiday_case = HolidayUseCase(date)
+    store = HolidayDataStore(date)
+    holiday_case = HolidayUseCase(store)
 
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
@@ -51,7 +54,8 @@ def test_discount_max(user_store_mock):
     user_case = UserUseCase(user_store_mock)
 
     date = datetime.date.today()
-    holiday_case = HolidayUseCase(date)
+    store = HolidayDataStore(date)
+    holiday_case = HolidayUseCase(store)
 
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
