@@ -13,7 +13,7 @@ def test_birthday_is_today(store_mock):
 
     case = UserUseCase(store_mock)
 
-    result = case.birthday(user.id)
+    result = case.discounts(user.id)
 
     assert result == {"percentage": 5}
 
@@ -28,6 +28,6 @@ def test_birthday_is_not_today(store_mock):
 
     case = UserUseCase(store_mock)
 
-    result = case.birthday(user.id)
+    result = case.discounts(user.id)
 
     assert result == {"percentage": 0}

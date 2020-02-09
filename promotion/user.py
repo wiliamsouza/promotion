@@ -8,11 +8,9 @@ class UserUseCase:
     def __init__(self, store):
         self.store = store
 
-    def discounts(self, *args, **kwargs):
+    def discounts(self, user_id):
         """Retrieve all users discounts available."""
-        # TODO: Validate args and kargs
-        # TODO: Add logs
-        return self.birthday(kwargs["user_id"])
+        return self.birthday(user_id)
 
     def birthday(self, user_id):
         """Give discount if is the exact date a person was born."""

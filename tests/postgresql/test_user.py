@@ -11,6 +11,6 @@ def test_user_data_store(database):
     assert database.query(User).one()
     store = UserDataStore(database)
 
-    result = store.user(user.id)
+    result = store.query(user.id)
 
     assert result.birthday == datetime.date.today()

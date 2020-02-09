@@ -10,7 +10,7 @@ class DiscountDataStore(Protocol):
     def __init__(self, database) -> None:
         ...
 
-    def query(self, *args, **kwargs) -> Dict:
+    def query(self, user_id) -> Dict:
         "Retrieve discount for the given arguments."
         ...
 
@@ -21,7 +21,7 @@ class DiscountUseCase(Protocol):
     def __init__(self, store: DiscountDataStore) -> None:
         ...
 
-    def discounts(self, *args, **kwargs) -> Dict:
+    def discounts(self, user_id) -> Dict:
         """Retrieve all discounts available."""
         ...
 
@@ -32,6 +32,6 @@ class PromotionUseCase(Protocol):
     def __init__(self, discounts: List[DiscountUseCase]) -> None:
         ...
 
-    def promotions(self, *args, **kwargs) -> Dict:
+    def promotions(self, user_id) -> Dict:
         """Retrieve all promotions available."""
         ...

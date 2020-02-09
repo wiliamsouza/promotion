@@ -12,7 +12,7 @@ class PromotionServicer(PromotionAPIServicer):
         self.use_case = use_case
 
     def RetrievePromotion(self, request, context):
-        discount = self.use_case.discounts(request.product_id, request.user_id)
+        discount = self.use_case.promotions(request.user_id)
         return RetrievePromotionResponse(
             discounts=[Discount(pct=discount["percentage"])]
         )

@@ -7,13 +7,13 @@ class PromotionUseCase:
     def __init__(self, discounts):
         self.discounts = discounts
 
-    def promotions(self, *args, **kwargs):
+    def promotions(self, user_id):
         """Retrieve all promotions available."""
         discount = {"percentage": 0}
         total_percentage = 0
 
         for d in self.discounts:
-            promotion = d.discounts(args, kwargs)
+            promotion = d.discounts(user_id)
             if promotion:
                 total_percentage += promotion["percentage"]
 

@@ -21,7 +21,7 @@ def test_discount_only_by_birthday(user_store_mock):
 
     case = DiscountUseCase(holiday_case, user_case)
 
-    result = case.discounts(uuid.uuid4(), user.id)
+    result = case.promotions(user.id)
 
     assert result == {"percentage": 5}
 
@@ -36,7 +36,8 @@ def test_discount_only_by_holiday(user_store_mock):
 
     case = DiscountUseCase(holiday_case, user_case)
 
-    result = case.discounts(uuid.uuid4(), uuid.uuid4())
+    no_exist = uuid.uuid4()
+    result = case.promotions(no_exist)
 
     assert result == {"percentage": 10}
 
@@ -54,6 +55,6 @@ def test_discount_max(user_store_mock):
 
     case = DiscountUseCase(holiday_case, user_case)
 
-    result = case.discounts(uuid.uuid4(), user.id)
+    result = case.promotions(user.id)
 
     assert result == {"percentage": 10}
