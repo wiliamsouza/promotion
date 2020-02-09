@@ -3,7 +3,7 @@ import uuid
 import datetime
 from unittest import mock
 
-from promotion.discount import PromotionUseCase
+from promotion import PromotionUseCase
 from promotion.holiday import HolidayUseCase
 from promotion.settings.holiday import HolidayDataStore
 from promotion.user import UserUseCase

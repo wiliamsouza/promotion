@@ -2,7 +2,7 @@
 import datetime
 import uuid
 
-from promotion.discount import PromotionUseCase
+from promotion import PromotionUseCase
 from promotion.holiday import HolidayUseCase
 from promotion.user import UserUseCase
 from promotion.postgresql.user import UserDataStore
