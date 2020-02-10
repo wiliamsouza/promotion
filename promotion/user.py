@@ -1,6 +1,8 @@
 "User use case implementation."
 import datetime
 
+from promotion import settings
+
 
 class UserUseCase:
     """Implements user use case interface."""
@@ -17,7 +19,6 @@ class UserUseCase:
         discount = {"percentage": 0}
         user = self.store.user(user_id)
         if user and user.birthday == datetime.date.today():
-            # TODO: Change to get from environment variable
-            discount["percentage"] = 5
+            discount["percentage"] = settings.USER_BIRTHDAY_PERCENTAGE
 
         return discount

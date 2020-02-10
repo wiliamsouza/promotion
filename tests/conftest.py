@@ -7,11 +7,12 @@ from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 
 from promotion.postgresql import Base
+from promotion import settings
 
 from .factories import UserFactory
 
 
-engine = create_engine(config("TEST_DATABASE_URL"), echo=True)
+engine = create_engine(settings.TEST_DATABASE_URL, echo=True)
 if not database_exists(engine.url):
     create_database(engine.url)
 

@@ -1,6 +1,8 @@
 "Holiday use case implementation."
 import datetime
 
+from promotion import settings
+
 
 class HolidayUseCase:
     """Implements holiday use case interface."""
@@ -16,7 +18,6 @@ class HolidayUseCase:
         """Give discount if today is black friday."""
         discount = {"percentage": 0}
         if self.store.query() == datetime.date.today():
-            # TODO: Change to get from environment variable
-            discount["percentage"] = 10
+            discount["percentage"] = settings.BLACK_FRIDAY_PERCENTAGE
 
         return discount

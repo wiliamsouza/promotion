@@ -1,5 +1,7 @@
 "Promotion use case implementation."
 
+from promotion import settings
+
 
 class PromotionUseCase:
     """Implements promotion use case interface."""
@@ -18,8 +20,7 @@ class PromotionUseCase:
                 total_percentage += promotion["percentage"]
 
         discount["percentage"] = total_percentage
-        if total_percentage > 10:
-            # TODO: Change to get from environment variable
-            discount["percentage"] = 10
+        if total_percentage > settings.MAX_DISCOUNT_PERCENTAGE:
+            discount["percentage"] = settings.MAX_DISCOUNT_PERCENTAGE
 
         return discount
