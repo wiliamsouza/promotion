@@ -22,3 +22,7 @@ class UserUseCase:
             discount["percentage"] = settings.USER_BIRTHDAY_PERCENTAGE
 
         return discount
+
+    def create(self, user_id, birthday):
+        """Create an user."""
+        return self.store.create(user_id, birthday)
