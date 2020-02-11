@@ -14,6 +14,7 @@ setup(
         "psycopg2",
         "SQLAlchemy",
         "prettyconf",
+        "googleapis-common-protos",
     ],
     extras_require={
         "dev": ["pylint", "mypy", "ipdb"],

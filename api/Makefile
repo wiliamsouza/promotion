@@ -13,8 +13,8 @@ help: ## Show Help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 generate: ## Genereate gRPC stubs
-	python -m grpc_tools.protoc -I. -Ipromotion/grpc/v1alpha1/ --python_out=. --grpc_python_out=. promotion/grpc/v1alpha1/discount.proto
-	python -m grpc_tools.protoc -I. -Ipromotion/grpc/v1alpha1/ --python_out=. --grpc_python_out=. promotion/grpc/v1alpha1/promotion_api.proto
+	python -m grpc_tools.protoc -I. -I.third_party/googleapis -Ipromotion/grpc/v1alpha1/ --python_out=. --grpc_python_out=. promotion/grpc/v1alpha1/discount.proto
+	python -m grpc_tools.protoc -I. -I.third_party/googleapis -Ipromotion/grpc/v1alpha1/ --python_out=. --grpc_python_out=. promotion/grpc/v1alpha1/promotion_api.proto
 	rm promotion/grpc/v1alpha1/discount_pb2_grpc.py
 	mv promotion/grpc/v1alpha1/*.py ../promotion/grpc/v1alpha1
 
