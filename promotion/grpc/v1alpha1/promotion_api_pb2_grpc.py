@@ -5,7 +5,7 @@ from promotion.grpc.v1alpha1 import promotion_api_pb2 as promotion_dot_grpc_dot_
 
 
 class PromotionAPIStub(object):
-  """PromotionAPI export products listings endpoints.
+  """PromotionAPI export promotions endpoints.
   """
 
   def __init__(self, channel):
@@ -19,15 +19,28 @@ class PromotionAPIStub(object):
         request_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionRequest.SerializeToString,
         response_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionResponse.FromString,
         )
+    self.CreateUser = channel.unary_unary(
+        '/promotion.grpc.v1alpha1.PromotionAPI/CreateUser',
+        request_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.CreateUserRequestResponse.SerializeToString,
+        response_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.CreateUserRequestResponse.FromString,
+        )
 
 
 class PromotionAPIServicer(object):
-  """PromotionAPI export products listings endpoints.
+  """PromotionAPI export promotions endpoints.
   """
 
   def RetrievePromotion(self, request, context):
     """RetrievePromotion.
-    This enables discounts by product sku
+    This retrieve all discounts by product and user IDs.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def CreateUser(self, request, context):
+    """CreateUser
+    This is used to populate user data store.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -40,6 +53,11 @@ def add_PromotionAPIServicer_to_server(servicer, server):
           servicer.RetrievePromotion,
           request_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionRequest.FromString,
           response_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.RetrievePromotionResponse.SerializeToString,
+      ),
+      'CreateUser': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateUser,
+          request_deserializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.CreateUserRequestResponse.FromString,
+          response_serializer=promotion_dot_grpc_dot_v1alpha1_dot_promotion__api__pb2.CreateUserRequestResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
