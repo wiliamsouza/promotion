@@ -1,8 +1,15 @@
 """Control CLI"""
+import uuid
+
+import grpc
 import click
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from prettyconf import config
+from google.type.date_pb2 import Date
+
+from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIStub
+from promotion.grpc.v1alpha1.promotion_api_pb2 import CreateUserRequestResponse
 from promotion.postgresql import Base, User
 
 engine = create_engine(config("DATABASE_URL"), echo=True)
@@ -39,14 +46,23 @@ def create():
 
 @create.command("user")
 @click.option(
-    "--birthday", "birth", required=True, type=click.DateTime(formats=["%Y-%m-%d"])
+    "--id", "user_id", required=True, type=click.UUID, default=str(uuid.uuid4())
 )
-def create_user(birth):
+@click.option(
+    "--birthday", "date", required=True, type=click.DateTime(formats=["%Y-%m-%d"])
+)
+def create_user(user_id, date):
     """Create user."""
-    user = User(birthday=birth)
-    session.add(user)
-    session.commit()
-    click.echo(user)
+
+    with grpc.insecure_channel("localhost:50051") as channel:
+        stub = PromotionAPIStub(channel)
+        birthday = Date(year=date.year, month=date.month, day=date.day)
+        request = CreateUserRequestResponse(
+            user_id=str(user_id).encode(), date_of_birth=birthday
+        )
+        response = stub.CreateUser(request)
+    click.echo("User:\n{}".format(response))
+
 
 @cli.group()
 def database():
