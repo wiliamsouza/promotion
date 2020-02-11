@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 
 from promotion.grpc.v1alpha1 import promotion_api_pb2_grpc as service
 from promotion.grpc.server import PromotionServicer
-from promotion.discount import DiscountUseCase
+from promotion import PromotionUseCase
 from promotion.holiday import HolidayUseCase
 from promotion.user import UserUseCase
 from promotion.postgresql.user import UserDataStore
@@ -43,9 +43,9 @@ def _grpc():
     date = datetime.date.today()
     holiday_case = HolidayUseCase(date)
 
-    case = DiscountUseCase(holiday_case, user_case)
+    case = PromotionUseCase(discounts=[holiday_case, user_case])
 
-    servicer = PromotionServicer(case)
+    servicer = PromotionServicer(case, user_case)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     service.add_PromotionAPIServicer_to_server(servicer, server)
     server.add_insecure_port("[::]:50051")
