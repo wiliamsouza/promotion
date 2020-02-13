@@ -9,13 +9,13 @@ def test_birthday_is_today(store_mock):
     date = datetime.date.today()
     user = mock.MagicMock()
     type(user).birthday = mock.PropertyMock(return_value=date)
-    store_mock.user.return_value = user
+    store_mock.query.return_value = user
 
     case = UserUseCase(store_mock)
 
-    result = case.discounts(user.id)
+    result = case.discount(user.id)
 
-    assert result == {"percentage": 5}
+    assert result.percentage == 5
 
 
 @mock.patch("promotion.postgresql.user.UserDataStore")
@@ -24,10 +24,10 @@ def test_birthday_is_not_today(store_mock):
     user = mock.MagicMock()
     birthday = mock.PropertyMock(return_value=date)
     type(user).birthday = birthday
-    store_mock.user.return_value = user
+    store_mock.query.return_value = user
 
     case = UserUseCase(store_mock)
 
-    result = case.discounts(user.id)
+    result = case.discount(user.id)
 
-    assert result == {"percentage": 0}
+    assert result.percentage == 0
