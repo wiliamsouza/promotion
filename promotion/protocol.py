@@ -1,37 +1,39 @@
 "Interface definitions using python typing."
-import datetime
-from typing import Dict, List
-from typing_extensions import Protocol
+import uuid
+from typing import Any, Dict, List, Protocol, runtime_checkable
+
+from promotion.entity import Discount, Promotion as PromotionEntity
 
 
+@runtime_checkable
 class DiscountDataStore(Protocol):
-    "Data store interface for discount."
+    """Data store interface for discount."""
 
     def __init__(self, database) -> None:
         ...
 
-    def query(self, user_id) -> Dict:
+    def query(self, user_id: uuid.UUID) -> Any:
         "Retrieve discount for the given arguments."
         ...
 
 
+@runtime_checkable
 class DiscountUseCase(Protocol):
-    "Domain interface for discount bussines logic."
+    """Domain interface for discount bussines logic."""
 
-    def __init__(self, store: DiscountDataStore) -> None:
+    store: DiscountDataStore
+
+    def discount(self, user_id: uuid.UUID) -> Discount:
+        """Retrieve discount available."""
         ...
 
-    def discounts(self, user_id) -> Dict:
-        """Retrieve all discounts available."""
-        ...
 
-
+@runtime_checkable
 class Promotion(Protocol):
-    "Domain interface for promotion bussines logic."
+    """Domain interface for promotion bussines logic."""
 
-    def __init__(self, discounts: List[DiscountUseCase]) -> None:
-        ...
+    discounts: List[DiscountUseCase]
 
-    def promotions(self, user_id) -> Dict:
+    def promotion(self, user_id: uuid.UUID) -> PromotionEntity:
         """Retrieve all promotions available."""
         ...
