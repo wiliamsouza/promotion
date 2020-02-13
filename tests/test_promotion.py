@@ -14,7 +14,7 @@ def test_discount_only_by_birthday(user_store_mock):
     date = datetime.date.today()
     user = mock.MagicMock()
     type(user).birthday = mock.PropertyMock(return_value=date)
-    user_store_mock.user.return_value = user
+    user_store_mock.query.return_value = user
     user_case = UserUseCase(user_store_mock)
 
     date = datetime.datetime.strptime("1970-12-01", "%Y-%m-%d").date()
@@ -23,9 +23,9 @@ def test_discount_only_by_birthday(user_store_mock):
 
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
-    result = case.promotions(user.id)
+    result = case.promotion(user.id)
 
-    assert result == {"percentage": 5}
+    assert result.discounts[0].percentage == 5
 
 
 @mock.patch("promotion.postgresql.user.UserDataStore")
@@ -40,9 +40,9 @@ def test_discount_only_by_holiday(user_store_mock):
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
     no_exist = uuid.uuid4()
-    result = case.promotions(no_exist)
+    result = case.promotion(no_exist)
 
-    assert result == {"percentage": 10}
+    assert result.discounts[0].percentage == 10
 
 
 @mock.patch("promotion.postgresql.user.UserDataStore")
@@ -59,6 +59,6 @@ def test_discount_max(user_store_mock):
 
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
-    result = case.promotions(user.id)
+    result = case.promotion(user.id)
 
-    assert result == {"percentage": 10}
+    assert result.discounts[0].percentage == 10
