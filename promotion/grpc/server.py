@@ -15,19 +15,19 @@ from google.type.date_pb2 import Date
 class PromotionServicer(PromotionAPIServicer):
     """Implements gRPC product API server"""
 
-    def __init__(
-        self, promotion_use_case: Promotion, user_use_case: UserUseCase
-    ) -> None:
+    def __init__(self, promotion_use_case: Promotion, user_use_case: UserUseCase):
         self.promotion_use_case = promotion_use_case
         self.user_use_case = user_use_case
 
-    def RetrievePromotion(self, request, context) -> RetrievePromotionResponse:
-        discount = self.promotion_use_case.promotions(request.user_id)
-        return RetrievePromotionResponse(
-            discounts=[Discount(pct=discount["percentage"])]
-        )
+    def RetrievePromotion(self, request, context):
+        promotion = self.promotion_use_case.promotion(request.user_id)
+        discounts = []
+        for discount in promotion.discounts:
+            discounts.append(Discount(pct=discount.percentage))
 
-    def CreateUser(self, request, context) -> CreateUserRequestResponse:
+        return RetrievePromotionResponse(discounts=discounts)
+
+    def CreateUser(self, request, context):
         date = datetime.date(
             request.date_of_birth.year,
             request.date_of_birth.month,
