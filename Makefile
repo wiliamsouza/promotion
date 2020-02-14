@@ -24,6 +24,10 @@ security: ## Run security code checks
 	echo "Running security check"
 	bandit -r --ini .bandit
 
+typping: ## Run static type checker
+	echo "Running type check"
+	mypy
+
 lint: ## Run lint
 	echo "Running linter check"
 	pylint promotion
