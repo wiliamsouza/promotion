@@ -38,4 +38,6 @@ class PromotionServicer(PromotionAPIServicer):
         birthday = Date(
             year=user.birthday.year, month=user.birthday.month, day=user.birthday.day
         )
-        return CreateUserRequestResponse(user_id=str(user.id), date_of_birth=birthday)
+        return CreateUserRequestResponse(
+            user_id=str(user.user_id), date_of_birth=birthday
+        )

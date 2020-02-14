@@ -17,11 +17,10 @@ class UserDataStore:
         user = self.database.query(User).filter(User.id == user_id).first()
         return UserEntity(birthday=user.birthday)
 
-    def create(self, user_id: uuid.UUID, birthday: datetime.date):
+    def create(self, user_id: uuid.UUID, birthday: datetime.date) -> UserEntity:
         """Store an user in database."""
         user = User(id=user_id, birthday=birthday)
         self.database.add(user)
         self.database.commit()
 
-        # TODO: Change to return entity.User
-        return user
+        return UserEntity(user_id=user.id, birthday=user.birthday)
