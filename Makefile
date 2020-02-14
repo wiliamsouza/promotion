@@ -20,6 +20,10 @@ clean:
 	rm -rf dist
 	rm -f count.out
 
+security: ## Run security code checks
+	echo "Running security check"
+	bandit -r --ini .bandit
+
 lint: ## Run lint
 	echo "Running linter check"
 	pylint promotion

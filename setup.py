@@ -17,7 +17,7 @@ setup(
         "googleapis-common-protos",
     ],
     extras_require={
-        "dev": ["pylint", "mypy", "ipdb"],
+        "dev": ["pylint", "mypy", "ipdb", "bandit"],
         "test": ["pytest", "pytest-cov", "factory_boy", "SQLAlchemy-Utils"],
     },
     entry_points={
