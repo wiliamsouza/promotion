@@ -19,3 +19,7 @@ clean:
 	find . -iname '__pycache__' -delete
 	rm -rf dist
 	rm -f count.out
+
+lint: ## Run lint
+	echo "Running linter check"
+	pylint promotion
