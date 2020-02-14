@@ -31,3 +31,5 @@ typping: ## Run static type checker
 lint: ## Run lint
 	echo "Running linter check"
 	pylint promotion
+
+check: lint typping security## Run pylint, mypy and bandit
