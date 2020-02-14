@@ -1,3 +1,4 @@
+"""Settings from enviroment variable"""
 import decimal
 from prettyconf import config
 

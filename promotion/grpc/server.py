@@ -1,5 +1,8 @@
 """Promotion API servicer implementation"""
 import datetime
+
+from google.type.date_pb2 import Date
+
 from promotion.grpc.v1alpha1.discount_pb2 import Discount
 from promotion.grpc.v1alpha1.promotion_api_pb2 import (
     RetrievePromotionResponse,
@@ -8,8 +11,6 @@ from promotion.grpc.v1alpha1.promotion_api_pb2 import (
 from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIServicer
 from promotion.protocol import Promotion
 from promotion.user import UserUseCase
-
-from google.type.date_pb2 import Date
 
 
 class PromotionServicer(PromotionAPIServicer):

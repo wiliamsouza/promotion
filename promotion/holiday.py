@@ -1,6 +1,5 @@
 "Holiday use case implementation."
 import datetime
-from typing import Dict
 import uuid
 from decimal import Decimal
 

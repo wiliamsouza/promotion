@@ -1,5 +1,5 @@
 "Promotion use case implementation."
-from typing import Dict, List, Protocol
+from typing import List
 import uuid
 from decimal import Decimal
 

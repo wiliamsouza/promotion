@@ -1,6 +1,6 @@
 "Interface definitions using python typing."
 import uuid
-from typing import Any, Dict, List, Protocol, runtime_checkable
+from typing import Any, List, Protocol, runtime_checkable
 
 from promotion.entity import Discount, Promotion as PromotionEntity
 

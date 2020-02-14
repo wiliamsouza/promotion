@@ -1,5 +1,5 @@
 """User data store implementation."""
-import datetime
+import uuid
 
 
 class HolidayDataStore:
@@ -8,5 +8,7 @@ class HolidayDataStore:
     def __init__(self, date):
         self.date = date
 
-    def query(self, *args, **kwargs):
+    # pylint: disable=unused-argument
+    def query(self, user_id: uuid.UUID):
+        "Query black friday date."
         return self.date

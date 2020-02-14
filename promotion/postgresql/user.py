@@ -1,6 +1,5 @@
 """User data store implementation."""
 import datetime
-from typing import Dict
 import uuid
 
 from promotion.postgresql import User

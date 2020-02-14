@@ -1,7 +1,6 @@
 "User use case implementation."
 import datetime
 from decimal import Decimal
-from typing import Dict
 import uuid
 
 from promotion import settings
