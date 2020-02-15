@@ -7,9 +7,9 @@ Handle promotions for your ecommerce store.
 Implemented promotions:
 
 * Discount: Add a discount to your products.
- - Birhtday: Date a person was born.
+  - Birhtday: Date a person was born.
 * Holiday: Configured date.
- - Black friday 
+  - Black friday: If it is the configured date.
 
 Most popular types of sales promotions:
 
@@ -59,19 +59,19 @@ and below how the source code was structured:
 
 * `api`: gRPC protocol definition.
 * `promotion`: Root module interface definition and use case implementation exist here.
- * `command`: Command line interfaces like daemons and clients.
- * `entity.py`: Internal only data structure representation.
- * `grpc`: gRPC generate stubs and server implementation.
- * `holiday.py`: Holiday use case implementation.
- * `__init__.py`: Promotion use case implementation.
- * `postgresql`: Postgresql data store implementation.
-  - `__init__.py`: SQLAlchemy model definition.
-  - `user.py`: User data store implementation.
- * `protocol.py`: Interface definition using typing Protocol
- * `settings`: Environment variable data store implementation.
-  - `holiday.py`: Holiday data store implementation.
-  - `__init__.py`: Configuration settings.
- * `user.py`: User use case implementation.
+  * `command`: Command line interfaces like daemons and clients.
+  * `entity.py`: Internal only data structure representation.
+  * `grpc`: gRPC generate stubs and server implementation.
+  * `holiday.py`: Holiday use case implementation.
+  * `__init__.py`: Promotion use case implementation.
+  * `postgresql`: Postgresql data store implementation.
+    - `__init__.py`: SQLAlchemy model definition.
+    - `user.py`: User data store implementation.
+  * `protocol.py`: Interface definition using typing Protocol
+  * `settings`: Environment variable data store implementation.
+    - `holiday.py`: Holiday data store implementation.
+    - `__init__.py`: Configuration settings.
+  * `user.py`: User use case implementation.
 * `tests`: gRPC protocol definition.
 
 The main reason for this is to build a solution to meadle-to-long tream.
