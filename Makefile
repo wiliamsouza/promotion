@@ -33,3 +33,6 @@ lint: ## Run lint
 	pylint promotion
 
 check: lint typping security## Run pylint, mypy and bandit
+
+test: ## Run tests
+	pytest
