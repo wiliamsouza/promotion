@@ -33,6 +33,8 @@ The figure below depicts how the solution was architected:
 [![Architecture](./docs/img/architecture.png)](./docs/img/architecture.png)
 
 and below how the source code was structured:
+
+```
 .
 ├── api
 │   └── ...
@@ -53,6 +55,7 @@ and below how the source code was structured:
 │   └── user.py
 └── tests
     └── ...
+```
 
 * `api`: gRPC protocol definition.
 * `promotion`: Root module interface definition and use case implementation exist here.
