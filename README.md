@@ -153,3 +153,16 @@ Before run tests start docker:
 ```
 docker-compose up
 ```
+
+## Docker
+
+Build:
+
+```bash
+docker build -t wiliam.dev/promotion .
+```
+
+Run:
+
+```bash
+docker run --env-file local.env --rm wiliam.dev/promotion
