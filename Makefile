@@ -19,6 +19,7 @@ clean:
 	find . -iname '__pycache__' -delete
 	rm -rf dist
 	rm -f count.out
+	rm -rf promotion.egg-info
 
 security: ## Run security code checks
 	echo "Running security check"
@@ -36,3 +37,6 @@ check: lint typping security## Run pylint, mypy and bandit
 
 test: ## Run tests
 	pytest
+
+install: ## Install system wide
+	python setup.py install
