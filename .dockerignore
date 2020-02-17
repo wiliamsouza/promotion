@@ -1,0 +1,6 @@
+.git/
+api/
+build/
+.*_cache/
+tests/
+docs/
