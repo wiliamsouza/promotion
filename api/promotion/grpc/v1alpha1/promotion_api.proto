@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package promotion.grpc.v1alpha1;
 
+option go_package = "v1alpha1";
+
 import "google/type/date.proto";
 import "promotion/grpc/v1alpha1/discount.proto";
 
