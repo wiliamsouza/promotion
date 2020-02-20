@@ -18,3 +18,7 @@ generate: ## Genereate gRPC stubs
 	rm promotion/grpc/v1alpha1/discount_pb2_grpc.py
 	mv promotion/grpc/v1alpha1/*.py ../promotion/grpc/v1alpha1
 
+generate-go: ## Genereate gRPC stubs gor golang
+	prototool generate
+	mv ../../product/grpc/client/promotion/grpc/v1alpha1 ../../product/grpc/client/promotion
+	rm -r ../../product/grpc/client/promotion/grpc
