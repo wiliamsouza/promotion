@@ -17,6 +17,7 @@ service PromotionAPI {
   // This is used to populate user data store.
   rpc CreateUser(CreateUserRequestResponse) returns (CreateUserRequestResponse) {}
 }
+
 message CreateUserRequestResponse {
   string user_id = 1;
   google.type.Date date_of_birth = 2;
