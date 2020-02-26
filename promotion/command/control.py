@@ -9,7 +9,10 @@ from prettyconf import config
 from google.type.date_pb2 import Date
 
 from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIStub
-from promotion.grpc.v1alpha1.promotion_api_pb2 import CreateUserRequestResponse
+from promotion.grpc.v1alpha1.promotion_api_pb2 import (
+    RetrievePromotionRequest,
+    CreateUserRequestResponse,
+)
 from promotion.postgresql import Base, User
 
 engine = create_engine(config("DATABASE_URL"), echo=True)
@@ -33,10 +36,29 @@ def _list():
 
 
 @_list.command("users")
-def _list_user():
+def list_user():
     """List users."""
     users = session.query(User).all()
     click.echo_via_pager(users)
+
+
+@client.group("retrieve")
+def retrieve():
+    """Retrieve commands."""
+
+
+@retrieve.command("promotion")
+@click.option("--user-id", "user_id", required=True, type=click.UUID)
+@click.option("--product-id", "product_id", type=click.UUID)
+def retrieve_promotion(user_id, product_id):
+    """List promotions."""
+    with grpc.insecure_channel("localhost:50051") as channel:
+        stub = PromotionAPIStub(channel)
+        request = RetrievePromotionRequest(
+            user_id=str(user_id).encode(), product_id=str(product_id).encode()
+        )
+        response = stub.RetrievePromotion(request)
+    click.echo(response.discounts)
 
 
 @client.group()
