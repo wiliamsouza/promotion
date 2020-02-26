@@ -15,7 +15,8 @@ class UserDataStore:
     def query(self, user_id: uuid.UUID) -> UserEntity:
         "Query filtering user for the given ID."
         user = self.database.query(User).filter(User.id == user_id).first()
-        return UserEntity(birthday=user.birthday)
+        if user:
+            return UserEntity(birthday=user.birthday)
 
     def create(self, user_id: uuid.UUID, birthday: datetime.date) -> UserEntity:
         """Store an user in database."""

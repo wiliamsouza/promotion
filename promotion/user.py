@@ -18,8 +18,10 @@ class UserUseCase:
         """Give discount if is the exact date a person was born."""
         discount = Discount(percentage=Decimal(0))
         user = self.store.query(user_id)
-        if user and user.birthday == datetime.date.today():
-            discount.percentage = settings.USER_BIRTHDAY_PERCENTAGE
+        if user:
+            today = datetime.date.today()
+            if user.birthday.day == today.day and user.birthday.month == today.month:
+                discount.percentage = settings.USER_BIRTHDAY_PERCENTAGE
 
         return discount
 
