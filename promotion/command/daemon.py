@@ -6,8 +6,6 @@ import click
 
 import grpc
 
-from prettyconf import config
-
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
@@ -15,6 +13,8 @@ from promotion.grpc.v1alpha1 import promotion_api_pb2_grpc as service
 from promotion.grpc.server import PromotionServicer
 from promotion import PromotionUseCase
 from promotion.holiday import HolidayUseCase
+from promotion.settings.holiday import HolidayDataStore
+from promotion import settings
 from promotion.user import UserUseCase
 from promotion.postgresql.user import UserDataStore
 
@@ -32,7 +32,7 @@ def serve():
 @serve.command("grpc")
 def _grpc():
     """Start discount gRPC server."""
-    engine = create_engine(config("DATABASE_URL"))
+    engine = create_engine(settings.DATABASE_URL)
     Session = sessionmaker(bind=engine)
     connection = engine.connect()
     session = Session(bind=connection)
@@ -40,8 +40,8 @@ def _grpc():
     user_store = UserDataStore(session)
     user_case = UserUseCase(user_store)
 
-    date = datetime.date.today()
-    holiday_case = HolidayUseCase(date)
+    holiday_store = HolidayDataStore(settings.BLACK_FRIDAY_DATE)
+    holiday_case = HolidayUseCase(holiday_store)
 
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
