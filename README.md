@@ -74,7 +74,7 @@ and below how the source code was structured:
   * `user.py`: User use case implementation.
 * `tests`: gRPC protocol definition.
 
-The main reason for this is to build a solution to meadle-to-long tream.
+The main reason for this is to build a solution to middle-to-long tream.
 
 ## Requirements
 
@@ -83,19 +83,23 @@ The main reason for this is to build a solution to meadle-to-long tream.
 
 ## Local development
 
-Install:
+Clone:
+```
+git clone https://github.com/wiliamsouza/promotion.git
 
+```
+The recomended way to get it is through https://github.com/wiliamsouza/maketplace
+
+Install:
 ```
 python setup.py develop
 ```
-
-This will install to commands:
+This will install two commands:
 
 * promotionctl: Command line interface.
 * promotiond: Start gRPC server.
 
-Each command has it own help.
-
+Each command has it own help:
 ```
 $ promotionctl 
 Usage: promotionctl [OPTIONS] COMMAND [ARGS]...
@@ -109,6 +113,7 @@ Commands:
   client    Clients for promotion and user.
   database  Database management commands.
 ```
+and:
 
 ```
 $ promotiond
@@ -137,7 +142,7 @@ pip install .[test]
 
 ## Makefile
 
-Run make to see help.
+Run `make` to see help.
 
 ```
 help                           Show Help
@@ -148,7 +153,7 @@ check                          Run pylint, mypy and bandit
 test                           Run tests
 ```
 
-Before run tests start docker:
+Before run tests start database:
 
 ```
 docker-compose up
