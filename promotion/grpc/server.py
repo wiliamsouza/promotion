@@ -24,7 +24,7 @@ class PromotionServicer(PromotionAPIServicer):
         promotion = self.promotion_use_case.promotion(request.user_id)
         discounts = []
         for discount in promotion.discounts:
-            discounts.append(Discount(pct=discount.percentage))
+            discounts.append(Discount(pct=float(discount.percentage)))
 
         return RetrievePromotionResponse(discounts=discounts)
 
