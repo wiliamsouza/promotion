@@ -1,7 +1,8 @@
 """Tests for postgresql user data store implementation."""
 import datetime
 
-from promotion.postgresql.user import User, UserDataStore
+from promotion.postgresql.user import UserDataStore
+from promotion.postgresql import User
 
 from ..factories import UserFactory
 
