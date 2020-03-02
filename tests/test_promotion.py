@@ -1,6 +1,6 @@
 """Tests for discount use case implementation."""
-import uuid
 import datetime
+import uuid
 from unittest import mock
 
 from promotion import PromotionUseCase
@@ -23,7 +23,7 @@ def test_discount_only_by_birthday(user_store_mock):
 
     case = PromotionUseCase(discounts=[holiday_case, user_case])
 
-    result = case.promotion(user.id)
+    result = case.promotion(uuid.uuid4())
 
     assert result.discounts[0].percentage == 5
 

@@ -1,6 +1,8 @@
 """Tests for user use case implementations."""
 import datetime
+import uuid
 from unittest import mock
+
 from promotion.user import UserUseCase
 
 
@@ -13,7 +15,7 @@ def test_birthday_is_today(store_mock):
 
     case = UserUseCase(store_mock)
 
-    result = case.discount(user.id)
+    result = case.discount(uuid.uuid4())
 
     assert result.percentage == 5
 
@@ -30,7 +32,7 @@ def test_birthday_month_day(store_mock):
 
     case = UserUseCase(store_mock)
 
-    result = case.discount(user.id)
+    result = case.discount(uuid.uuid4())
 
     assert result.percentage == 5
 

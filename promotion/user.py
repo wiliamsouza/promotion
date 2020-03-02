@@ -21,7 +21,7 @@ class UserUseCase:
 
         user = None
         try:
-            uuid.UUID(user_id)
+            uuid.UUID(str(user_id))
             user = self.store.query(user_id)
         except ValueError:
             logging.info("Not valid user ID, not querying database.")
