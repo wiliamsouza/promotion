@@ -1,5 +1,4 @@
 """Daemon CLI"""
-import datetime
 from concurrent import futures
 
 import click
