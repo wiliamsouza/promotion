@@ -3,20 +3,17 @@ import datetime
 from concurrent import futures
 
 import click
-
 import grpc
-
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-from promotion.grpc.v1alpha1 import promotion_api_pb2_grpc as service
+from promotion import PromotionUseCase, settings
 from promotion.grpc.server import PromotionServicer
-from promotion import PromotionUseCase
+from promotion.grpc.v1alpha1 import promotion_api_pb2_grpc as service
 from promotion.holiday import HolidayUseCase
-from promotion.settings.holiday import HolidayDataStore
-from promotion import settings
-from promotion.user import UserUseCase
 from promotion.postgresql.user import UserDataStore
+from promotion.settings.holiday import HolidayDataStore
+from promotion.user import UserUseCase
 
 
 @click.group()

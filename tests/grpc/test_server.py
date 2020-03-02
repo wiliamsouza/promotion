@@ -2,19 +2,17 @@
 import datetime
 import uuid
 
+from google.type.date_pb2 import Date
+
 from promotion import PromotionUseCase
-from promotion.holiday import HolidayUseCase
-from promotion.user import UserUseCase
-from promotion.postgresql.user import UserDataStore
-from promotion.postgresql import User
 from promotion.grpc.server import PromotionServicer
 from promotion.grpc.v1alpha1.promotion_api_pb2 import (
-    RetrievePromotionRequest,
-    CreateUserRequestResponse,
-)
+    CreateUserRequestResponse, RetrievePromotionRequest)
+from promotion.holiday import HolidayUseCase
+from promotion.postgresql import User
+from promotion.postgresql.user import UserDataStore
 from promotion.settings.holiday import HolidayDataStore
-
-from google.type.date_pb2 import Date
+from promotion.user import UserUseCase
 
 from ..factories import UserFactory
 

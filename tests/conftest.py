@@ -1,16 +1,13 @@
 import pytest
-
 from prettyconf import config
-
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy_utils import create_database, database_exists
 
-from promotion.postgresql import Base
 from promotion import settings
+from promotion.postgresql import Base
 
 from .factories import UserFactory
-
 
 engine = create_engine(settings.TEST_DATABASE_URL, echo=True)
 if not database_exists(engine.url):

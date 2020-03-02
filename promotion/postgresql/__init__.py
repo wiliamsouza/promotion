@@ -1,10 +1,9 @@
 """Postgres using SQLAlchemy data store implementation."""
 import uuid
 
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Date
-
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 

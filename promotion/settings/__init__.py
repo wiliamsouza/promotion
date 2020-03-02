@@ -1,6 +1,7 @@
 """Settings from enviroment variable"""
 import datetime
 import decimal
+
 from prettyconf import config
 
 DATABASE_URL = config("DATABASE_URL")

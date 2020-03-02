@@ -2,7 +2,7 @@
 import datetime
 
 from promotion.holiday import HolidayUseCase
-from promotion.protocol import DiscountUseCase, DiscountDataStore
+from promotion.protocol import DiscountDataStore, DiscountUseCase
 from promotion.settings.holiday import HolidayDataStore
 
 

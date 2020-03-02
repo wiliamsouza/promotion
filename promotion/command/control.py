@@ -1,18 +1,16 @@
 """Control CLI"""
 import uuid
 
-import grpc
 import click
+import grpc
+from google.type.date_pb2 import Date
+from prettyconf import config
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from prettyconf import config
-from google.type.date_pb2 import Date
 
-from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIStub
 from promotion.grpc.v1alpha1.promotion_api_pb2 import (
-    RetrievePromotionRequest,
-    CreateUserRequestResponse,
-)
+    CreateUserRequestResponse, RetrievePromotionRequest)
+from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIStub
 from promotion.postgresql import Base, User
 
 engine = create_engine(config("DATABASE_URL"), echo=True)

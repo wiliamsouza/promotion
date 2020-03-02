@@ -2,7 +2,8 @@
 import uuid
 from typing import Any, List, Protocol, runtime_checkable
 
-from promotion.entity import Discount, Promotion as PromotionEntity
+from promotion.entity import Discount
+from promotion.entity import Promotion as PromotionEntity
 
 
 @runtime_checkable

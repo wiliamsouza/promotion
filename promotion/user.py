@@ -1,12 +1,12 @@
 "User use case implementation."
 import datetime
-from decimal import Decimal
 import logging
 import uuid
+from decimal import Decimal
 
 from promotion import settings
-from promotion.protocol import DiscountDataStore
 from promotion.entity import Discount
+from promotion.protocol import DiscountDataStore
 
 
 class UserUseCase:

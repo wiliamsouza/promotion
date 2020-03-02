@@ -2,8 +2,8 @@
 import datetime
 import uuid
 
-from promotion.postgresql import User
 from promotion.entity import User as UserEntity
+from promotion.postgresql import User
 
 
 class UserDataStore:

@@ -6,13 +6,16 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+from google.type import date_pb2 as google_dot_type_dot_date__pb2
+
+from promotion.grpc.v1alpha1 import \
+    discount_pb2 as promotion_dot_grpc_dot_v1alpha1_dot_discount__pb2
+
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-from google.type import date_pb2 as google_dot_type_dot_date__pb2
-from promotion.grpc.v1alpha1 import discount_pb2 as promotion_dot_grpc_dot_v1alpha1_dot_discount__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(

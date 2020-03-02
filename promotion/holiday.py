@@ -4,8 +4,8 @@ import uuid
 from decimal import Decimal
 
 from promotion import settings
-from promotion.protocol import DiscountDataStore
 from promotion.entity import Discount
+from promotion.protocol import DiscountDataStore
 
 
 class HolidayUseCase:

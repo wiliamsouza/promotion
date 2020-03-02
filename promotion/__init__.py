@@ -1,11 +1,11 @@
 "Promotion use case implementation."
-from typing import List
 import uuid
 from decimal import Decimal
+from typing import List
 
 from promotion import settings
-from promotion.protocol import DiscountUseCase
 from promotion.entity import Discount, Promotion
+from promotion.protocol import DiscountUseCase
 
 
 class PromotionUseCase:
