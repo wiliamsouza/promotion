@@ -1,11 +1,11 @@
 version: 2.1
 
-orbs:
-  python: circleci/python@0.2.1
-
 jobs:
   test:
-    executor: python/default
+  build:
+    docker:
+      - image:  circleci/python:3.8.2
+    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
     steps:
       - checkout
       - run:
