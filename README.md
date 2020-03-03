@@ -151,6 +151,7 @@ typping                        Run static type checker
 lint                           Run lint
 check                          Run pylint, mypy and bandit
 test                           Run tests
+install                        Install system wide
 ```
 
 Before run tests start database:
