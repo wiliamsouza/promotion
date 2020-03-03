@@ -96,8 +96,8 @@ python setup.py develop
 ```
 This will install two commands:
 
-* promotionctl: Command line interface.
-* promotiond: Start gRPC server.
+* promotionctl: Promotion control command line interface.
+* promotiond: Promotion daemon command line interface.
 
 Each command has it own help:
 ```
