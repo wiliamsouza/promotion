@@ -33,7 +33,7 @@ lint: ## Run lint
 	echo "Running linter check"
 	pylint promotion
 
-check: lint typping security## Run pylint, mypy and bandit
+check: lint typping security ## Run pylint, mypy and bandit
 
 test: ## Run tests
 	pytest
