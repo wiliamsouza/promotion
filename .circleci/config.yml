@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Install
-          command: sudo pip install .[test]
+          command: sudo pip install .[test,dev]
       - run:
           name: Security checker
           command: make security
