@@ -5,6 +5,11 @@ jobs:
     working_directory: ~/promotion
     docker:
       - image: circleci/python:3.8.2-buster
+      - image: circleci/postgres:12
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: swordfish
+          POSTGRES_DB: test_promotion
     steps:
       - checkout
       - run:
@@ -19,6 +24,9 @@ jobs:
       - run:
           name: Lint code
           command: make lint
+      - run:
+          name: Enviroment variables
+          command: cp local.env .env
       - run:
           name: Test
           command: make test
