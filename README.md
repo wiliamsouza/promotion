@@ -1,4 +1,5 @@
-[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit) [![CircleCI](https://circleci.com/gh/wiliamsouza/promotion.svg?style=shield)](https://app.circleci.com/pipelines/github/wiliamsouza/promotion?branch=master)
+
 
 # Promotion service
 
