@@ -4,14 +4,11 @@ jobs:
   test:
     working_directory: ~/promotion
     docker:
-      - image:  circleci/python:3.8.2-buster
+      - image: circleci/python:3.8.2-buster
     steps:
       - checkout
       - run:
           name: Install
-          command: sudo make install
-      - run:
-          name: Test Dependencies
           command: sudo pip install .[test]
       - run:
           name: Security checker
