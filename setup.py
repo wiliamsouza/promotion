@@ -8,8 +8,8 @@ setup(
     include_package_data=True,
     install_requires=[
         "Click",
-        "grpcio",
-        "grpcio-tools",
+        "grpcio==1.27.2",
+        "grpcio-tools==1.27.2",
         "typing-extensions",
         "psycopg2",
         "SQLAlchemy",

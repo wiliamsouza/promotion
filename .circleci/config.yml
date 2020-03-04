@@ -4,7 +4,7 @@ jobs:
   test:
     working_directory: ~/promotion
     docker:
-      - image:  circleci/python:3.8.2
+      - image:  circleci/python:3.8.2-buster
     steps:
       - checkout
       - run:
