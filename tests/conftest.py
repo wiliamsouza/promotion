@@ -4,6 +4,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database, database_exists
 
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerSource
+from opentelemetry.sdk.trace.export import (
+    SimpleExportSpanProcessor,
+    ConsoleSpanExporter,
+)
+
 from promotion import settings
 from promotion.postgresql import Base
 
@@ -32,3 +39,13 @@ def database(connection):
     yield session
     session.close()
     transaction.rollback()
+
+
+@pytest.fixture(scope="session")
+def tracer():
+    exporter = ConsoleSpanExporter()
+    span_processor = SimpleExportSpanProcessor(exporter)
+    trace.set_preferred_tracer_source_implementation(lambda T: TracerSource())
+    span_processor = SimpleExportSpanProcessor(exporter)
+    trace.tracer_source().add_span_processor(span_processor)
+    return trace.get_tracer(__name__)

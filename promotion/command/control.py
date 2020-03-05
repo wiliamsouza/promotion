@@ -9,7 +9,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from promotion.grpc.v1alpha1.promotion_api_pb2 import (
-    CreateUserRequestResponse, RetrievePromotionRequest)
+    CreateUserRequestResponse,
+    RetrievePromotionRequest,
+)
 from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIStub
 from promotion.postgresql import Base, User
 

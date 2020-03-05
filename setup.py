@@ -15,6 +15,9 @@ setup(
         "SQLAlchemy",
         "prettyconf",
         "googleapis-common-protos",
+        "opentelemetry-api==0.4a1",
+        "opentelemetry-ext-jaeger==0.4a1",
+        "opentelemetry-sdk==0.4a1",
     ],
     extras_require={
         "dev": ["pylint", "mypy", "ipdb", "bandit"],

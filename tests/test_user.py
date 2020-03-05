@@ -7,13 +7,13 @@ from promotion.user import UserUseCase
 
 
 @mock.patch("promotion.postgresql.user.UserDataStore")
-def test_birthday_is_today(store_mock):
+def test_birthday_is_today(store_mock, tracer):
     date = datetime.date.today()
     user = mock.MagicMock()
     type(user).birthday = mock.PropertyMock(return_value=date)
     store_mock.query.return_value = user
 
-    case = UserUseCase(store_mock)
+    case = UserUseCase(store_mock, tracer)
 
     result = case.discount(uuid.uuid4())
 
@@ -21,7 +21,7 @@ def test_birthday_is_today(store_mock):
 
 
 @mock.patch("promotion.postgresql.user.UserDataStore")
-def test_birthday_month_day(store_mock):
+def test_birthday_month_day(store_mock, tracer):
     today = datetime.date.today()
     date = datetime.datetime.strptime(
         "1970-{}-{}".format(today.month, today.day), "%Y-%m-%d"
@@ -30,7 +30,7 @@ def test_birthday_month_day(store_mock):
     type(user).birthday = mock.PropertyMock(return_value=date)
     store_mock.query.return_value = user
 
-    case = UserUseCase(store_mock)
+    case = UserUseCase(store_mock, tracer)
 
     result = case.discount(uuid.uuid4())
 
@@ -38,14 +38,14 @@ def test_birthday_month_day(store_mock):
 
 
 @mock.patch("promotion.postgresql.user.UserDataStore")
-def test_birthday_is_not_today(store_mock):
+def test_birthday_is_not_today(store_mock, tracer):
     date = datetime.datetime.strptime("1981-06-06", "%Y-%m-%d").date()
     user = mock.MagicMock()
     birthday = mock.PropertyMock(return_value=date)
     type(user).birthday = birthday
     store_mock.query.return_value = user
 
-    case = UserUseCase(store_mock)
+    case = UserUseCase(store_mock, tracer)
 
     result = case.discount(user.id)
 

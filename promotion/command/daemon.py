@@ -3,6 +3,13 @@ from concurrent import futures
 
 import click
 import grpc
+from opentelemetry import trace
+from opentelemetry.ext.jaeger import JaegerSpanExporter
+from opentelemetry.sdk.trace import TracerSource
+from opentelemetry.sdk.trace.export import (
+    SimpleExportSpanProcessor,
+    ConsoleSpanExporter,
+)
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -33,15 +40,34 @@ def _grpc():
     connection = engine.connect()
     session = Session(bind=connection)
 
-    user_store = UserDataStore(session)
-    user_case = UserUseCase(user_store)
+    exporter = ConsoleSpanExporter()
+    if settings.TRACER_ENDPOINT_HOST and settings.TRACER_ENDPOINT_PORT:
+        exporter = JaegerSpanExporter(
+            service_name="promotion-grpc",
+            agent_host_name=settings.TRACER_ENDPOINT_HOST,
+            agent_port=settings.TRACER_ENDPOINT_PORT,
+        )
 
-    holiday_store = HolidayDataStore(settings.BLACK_FRIDAY_DATE)
-    holiday_case = HolidayUseCase(holiday_store)
+    trace.set_preferred_tracer_source_implementation(lambda T: TracerSource())
 
-    case = PromotionUseCase(discounts=[holiday_case, user_case])
+    tracer = trace.get_tracer(__name__)
 
-    servicer = PromotionServicer(case, user_case)
+    ## span_processor = BatchExportSpanProcessor(exporter)
+    span_processor = SimpleExportSpanProcessor(exporter)
+
+    trace.tracer_source().add_span_processor(span_processor)
+
+    tracer = trace.get_tracer(__name__)
+
+    user_store = UserDataStore(session, tracer)
+    user_case = UserUseCase(user_store, tracer)
+
+    holiday_store = HolidayDataStore(settings.BLACK_FRIDAY_DATE, tracer)
+    holiday_case = HolidayUseCase(holiday_store, tracer)
+
+    case = PromotionUseCase(discounts=[holiday_case, user_case], tracer=tracer)
+
+    servicer = PromotionServicer(case, user_case, tracer)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     service.add_PromotionAPIServicer_to_server(servicer, server)
     server.add_insecure_port("[::]:50051")
