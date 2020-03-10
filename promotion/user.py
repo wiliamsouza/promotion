@@ -12,6 +12,8 @@ from promotion.protocol import DiscountDataStore
 
 SERVER = trace.SpanKind.SERVER
 
+logger = logging.getLogger(__name__)
+
 
 class UserUseCase:
     """Implements DiscountUseCase interface."""
@@ -33,7 +35,7 @@ class UserUseCase:
                 uuid.UUID(str(user_id))
                 user = self.store.query(user_id)
             except ValueError:
-                logging.info("Not valid user ID, not querying database.")
+                logger.debug("Not valid user ID, not querying database.")
 
             span.set_attribute("is_user_birthday?", False)
             if user:

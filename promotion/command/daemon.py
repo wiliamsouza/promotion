@@ -1,5 +1,6 @@
 """Daemon CLI"""
 from concurrent import futures
+import logging
 
 import click
 import grpc
@@ -22,6 +23,9 @@ from promotion.settings.holiday import HolidayDataStore
 from promotion.user import UserUseCase
 
 
+logger = logging.getLogger(__name__)
+
+
 @click.group()
 def cli():
     """Promotion daemon command line interface."""
@@ -35,6 +39,9 @@ def serve():
 @serve.command("grpc")
 def _grpc():
     """Start discount gRPC server."""
+
+    logging.basicConfig(level=logging.INFO)
+
     engine = create_engine(settings.DATABASE_URL)
     Session = sessionmaker(bind=engine)
     connection = engine.connect()
@@ -70,6 +77,7 @@ def _grpc():
     servicer = PromotionServicer(case, user_case, tracer)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     service.add_PromotionAPIServicer_to_server(servicer, server)
+    logger.info("Listenning on port 50051.")
     server.add_insecure_port("[::]:50051")
     server.start()
     server.wait_for_termination()
