@@ -50,9 +50,10 @@ def retrieve():
 @retrieve.command("promotion")
 @click.option("--user-id", "user_id", required=True, type=click.UUID)
 @click.option("--product-id", "product_id", type=click.UUID)
-def retrieve_promotion(user_id, product_id):
+@click.option("--endpoint", "grpc_endpoint", required=True, type=click.STRING)
+def retrieve_promotion(user_id, product_id, grpc_endpoint):
     """List promotions."""
-    with grpc.insecure_channel("localhost:50051") as channel:
+    with grpc.insecure_channel(grpc_endpoint) as channel:
         stub = PromotionAPIStub(channel)
         request = RetrievePromotionRequest(
             user_id=str(user_id).encode(), product_id=str(product_id).encode()
@@ -73,10 +74,10 @@ def create():
 @click.option(
     "--birthday", "date", required=True, type=click.DateTime(formats=["%Y-%m-%d"])
 )
-def create_user(user_id, date):
+@click.option("--endpoint", "grpc_endpoint", required=True, type=click.STRING)
+def create_user(user_id, date, grpc_endpoint):
     """Create user."""
-
-    with grpc.insecure_channel("localhost:50051") as channel:
+    with grpc.insecure_channel(grpc_endpoint) as channel:
         stub = PromotionAPIStub(channel)
         birthday = Date(year=date.year, month=date.month, day=date.day)
         request = CreateUserRequestResponse(
