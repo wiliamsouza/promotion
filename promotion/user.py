@@ -39,7 +39,9 @@ class UserUseCase:
 
             span.set_attribute("is_user_birthday?", False)
             if user:
+                span.set_attribute("user birthday", str(user.birthday))
                 today = datetime.date.today()
+                span.set_attribute("today", str(today))
                 if (
                     user.birthday.day == today.day
                     and user.birthday.month == today.month

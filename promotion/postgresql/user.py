@@ -28,6 +28,7 @@ class UserDataStore:
         ) as span:
 
             span.set_attribute("is_user_found?", False)
+            span.set_attribute("user_id", str(user_id))
             user = (
                 self.database.query(UserModel).filter(UserModel.id == user_id).first()
             )
