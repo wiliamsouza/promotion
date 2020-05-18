@@ -22,6 +22,7 @@ Most popular types of sales promotions:
 * Coupon Giveaway
 * Competitions
 * Price Match Promise
+* Cashback
 
 From the list above, of the most popular types of promotions this is the type of service
 that should be developed to be easy extended and thus decrease lead time.
