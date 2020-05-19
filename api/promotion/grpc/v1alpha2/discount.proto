@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package promotion.grpc.v1alpha2;
+
+option go_package = "v1alpha2";
+
+// Discount message.
+message Discount {
+  float pct = 1;
+}

@@ -52,7 +52,7 @@ class UserUseCase:
             span.set_attribute("given_discount_percentage", str(discount.percentage))
             return discount
 
-    def create(self, user_id, birthday):
+    def create(self, user_id, birthday, identity, email, name, password):
         """Create an user."""
         with self.tracer.start_as_current_span("UserUseCase.create", kind=SERVER):
-            return self.store.create(user_id, birthday)
+            return self.store.create(user_id, birthday, identity, email, name, password)

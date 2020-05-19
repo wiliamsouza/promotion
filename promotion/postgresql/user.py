@@ -34,17 +34,30 @@ class UserDataStore:
             )
             if user:
                 span.set_attribute("is_user_found?", True)
-                return UserEntity(birthday=user.birthday)
+                return UserEntity(
+                    birthday=user.birthday,
+                    identity=user.identity,
+                    email=user.email,
+                    name=user.name,
+                    password=user.password,
+                )
 
         return None
 
-    def create(self, user_id: uuid.UUID, birthday: datetime.date) -> UserEntity:
+    def create(self, user_id: uuid.UUID, birthday: datetime.date, identity: str, email: str, name: str, password: str) -> UserEntity:
         """Store an user in database."""
         with self.tracer.start_as_current_span(
             "UserDataStore.create", kind=SERVER
         ) as span:
 
-            user = UserModel(id=user_id, birthday=birthday)
+            user = UserModel(
+                id=user_id,
+                birthday=birthday,
+                identity=identity,
+                email=email,
+                name=name,
+                password=password,
+            )
             self.database.add(user)
             try:
                 self.database.commit()
@@ -57,4 +70,10 @@ class UserDataStore:
                     description="Success creating user",
                 )
             )
-            return UserEntity(user_id=user.id, birthday=user.birthday)
+            return UserEntity(
+                birthday=user.birthday,
+                identity=user.identity,
+                email=user.email,
+                name=user.name,
+                password=user.password,
+            )

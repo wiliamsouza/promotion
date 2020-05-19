@@ -4,12 +4,12 @@ import datetime
 from google.type.date_pb2 import Date
 from opentelemetry import trace
 
-from promotion.grpc.v1alpha1.discount_pb2 import Discount
-from promotion.grpc.v1alpha1.promotion_api_pb2 import (
-    CreateUserRequestResponse,
+from promotion.grpc.v1alpha2.discount_pb2 import Discount
+from promotion.grpc.v1alpha2.promotion_api_pb2 import (
+    CreateUserResponse,
     RetrievePromotionResponse,
 )
-from promotion.grpc.v1alpha1.promotion_api_pb2_grpc import PromotionAPIServicer
+from promotion.grpc.v1alpha2.promotion_api_pb2_grpc import PromotionAPIServicer
 from promotion.protocol import Promotion
 from promotion.user import UserUseCase
 
@@ -48,12 +48,25 @@ class PromotionServicer(PromotionAPIServicer):
                 request.date_of_birth.month,
                 request.date_of_birth.day,
             )
-            user = self.user_use_case.create(request.user_id, date)
+
+            user = self.user_use_case.create(
+                request.user_id,
+                date,
+                request.identity,
+                request.email,
+                request.name,
+                request.password
+            )
+
             birthday = Date(
                 year=user.birthday.year,
                 month=user.birthday.month,
                 day=user.birthday.day,
             )
-            return CreateUserRequestResponse(
-                user_id=str(user.user_id), date_of_birth=birthday
+            return CreateUserResponse(
+                user_id=str(user.user_id),
+                date_of_birth=birthday,
+                identity=user.identity,
+                email=user.email,
+                name=user.name,
             )

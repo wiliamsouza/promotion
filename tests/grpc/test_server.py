@@ -6,8 +6,9 @@ from google.type.date_pb2 import Date
 
 from promotion import PromotionUseCase
 from promotion.grpc.server import PromotionServicer
-from promotion.grpc.v1alpha1.promotion_api_pb2 import (
-    CreateUserRequestResponse,
+from promotion.grpc.v1alpha2.promotion_api_pb2 import (
+    CreateUserRequest,
+    CreateUserResponse,
     RetrievePromotionRequest,
 )
 from promotion.holiday import HolidayUseCase
@@ -57,11 +58,18 @@ def test_server_create_user(database, tracer):
     date = datetime.date.today()
     birthday = Date(year=date.year, month=date.month, day=date.day)
     user_id = uuid.uuid4()
-    request = CreateUserRequestResponse(
-        user_id=str(user_id).encode(), date_of_birth=birthday
+    request = CreateUserRequest(
+        user_id=str(user_id).encode(),
+        date_of_birth=birthday,
+        identity="03303441965",
+        email="user@email.com",
+        name="User name",
+        password="swordfish",
     )
     result = servicer.CreateUser(request, None)
 
     assert database.query(User).one()
-    assert result.user_id == str(user_id)
     assert result.date_of_birth == birthday
+    assert result.identity == "03303441965"
+    assert result.email == "user@email.com"
+    assert result.name == "User name"

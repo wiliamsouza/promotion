@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package promotion.grpc.v1alpha2;
+
+option go_package = "v1alpha2";
+
+import "google/type/date.proto";
+import "promotion/grpc/v1alpha2/discount.proto";
+
+// PromotionAPI export promotions endpoints.
+service PromotionAPI {
+  // RetrievePromotion.
+  // This retrieve all discounts by product and user IDs.
+  rpc RetrievePromotion(RetrievePromotionRequest) returns (RetrievePromotionResponse) {}
+
+  //CreateUser
+  // This is used to populate user data store.
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+}
+
+message CreateUserRequest {
+  string user_id = 1;
+  google.type.Date date_of_birth = 2;
+  string identity = 3;
+  string email = 4;
+  string name = 5;
+  string password = 6;
+}
+
+message CreateUserResponse {
+  string user_id = 1;
+  google.type.Date date_of_birth = 2;
+  string identity = 3;
+  string email = 4;
+  string name = 5;
+}
+
+message RetrievePromotionRequest {
+  string user_id = 1;
+  string product_id = 2;
+}
+
+message RetrievePromotionResponse {
+  repeated promotion.grpc.v1alpha2.Discount discounts = 1;
+}

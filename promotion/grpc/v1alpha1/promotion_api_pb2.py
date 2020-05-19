@@ -6,24 +6,21 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
-from google.type import date_pb2 as google_dot_type_dot_date__pb2
-
-from promotion.grpc.v1alpha1 import \
-    discount_pb2 as promotion_dot_grpc_dot_v1alpha1_dot_discount__pb2
-
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
+from google.type import date_pb2 as google_dot_type_dot_date__pb2
+from promotion.grpc.v1alpha1 import discount_pb2 as promotion_dot_grpc_dot_v1alpha1_dot_discount__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='promotion/grpc/v1alpha1/promotion_api.proto',
   package='promotion.grpc.v1alpha1',
   syntax='proto3',
-  serialized_options=None,
-  serialized_pb=b'\n+promotion/grpc/v1alpha1/promotion_api.proto\x12\x17promotion.grpc.v1alpha1\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha1/discount.proto\"V\n\x19\x43reateUserRequestResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha1.Discount2\x84\x02\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha1.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha1.RetrievePromotionResponse\"\x00\x12v\n\nCreateUser\x12\x32.promotion.grpc.v1alpha1.CreateUserRequestResponse\x1a\x32.promotion.grpc.v1alpha1.CreateUserRequestResponse\"\x00\x62\x06proto3'
+  serialized_options=b'Z\010v1alpha1',
+  serialized_pb=b'\n+promotion/grpc/v1alpha1/promotion_api.proto\x12\x17promotion.grpc.v1alpha1\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha1/discount.proto\"V\n\x19\x43reateUserRequestResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha1.Discount2\x84\x02\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha1.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha1.RetrievePromotionResponse\"\x00\x12v\n\nCreateUser\x12\x32.promotion.grpc.v1alpha1.CreateUserRequestResponse\x1a\x32.promotion.grpc.v1alpha1.CreateUserRequestResponse\"\x00\x42\nZ\x08v1alpha1b\x06proto3'
   ,
   dependencies=[google_dot_type_dot_date__pb2.DESCRIPTOR,promotion_dot_grpc_dot_v1alpha1_dot_discount__pb2.DESCRIPTOR,])
 
@@ -165,6 +162,7 @@ RetrievePromotionResponse = _reflection.GeneratedProtocolMessageType('RetrievePr
 _sym_db.RegisterMessage(RetrievePromotionResponse)
 
 
+DESCRIPTOR._options = None
 
 _PROMOTIONAPI = _descriptor.ServiceDescriptor(
   name='PromotionAPI',
