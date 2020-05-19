@@ -21,7 +21,7 @@ class User(Base):
     email = Column(String)
     name = Column(String)
     password = Column(String)
-    orders = relationship("Orders", backref="users", order_by="Orders.id")
+    orders = relationship("Order", backref="users", order_by="Order.id")
 
 
 class Order(Base):
