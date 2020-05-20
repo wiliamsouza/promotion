@@ -14,8 +14,10 @@ from promotion.grpc.v1alpha2.promotion_api_pb2 import (
 from promotion.holiday import HolidayUseCase
 from promotion.postgresql import User
 from promotion.postgresql.user import UserDataStore
+from promotion.postgresql.order import OrderDataStore
 from promotion.settings.holiday import HolidayDataStore
 from promotion.user import UserUseCase
+from promotion.order import OrderUseCase
 
 from ..factories import UserFactory
 
@@ -27,13 +29,16 @@ def test_server(database, tracer):
     user_store = UserDataStore(database, tracer)
     user_case = UserUseCase(user_store, tracer)
 
+    order_store = OrderDataStore(database, tracer)
+    order_case = OrderUseCase(order_store, tracer)
+
     date = datetime.date.today()
     holiday_store = HolidayDataStore(date, tracer)
     holiday_case = HolidayUseCase(holiday_store, tracer)
 
     case = PromotionUseCase(discounts=[holiday_case, user_case], tracer=tracer)
 
-    servicer = PromotionServicer(case, user_case, tracer)
+    servicer = PromotionServicer(case, user_case, order_case, tracer)
 
     request = RetrievePromotionRequest(
         user_id=str(user.id), product_id=str(uuid.uuid4()).encode()
@@ -47,13 +52,16 @@ def test_server_create_user(database, tracer):
     user_store = UserDataStore(database, tracer)
     user_case = UserUseCase(user_store, tracer)
 
+    order_store = OrderDataStore(database, tracer)
+    order_case = OrderUseCase(order_store, tracer)
+
     date = datetime.datetime.strptime("1970-11-25", "%Y-%m-%d").date()
     holiday_store = HolidayDataStore(date, tracer)
     holiday_case = HolidayUseCase(holiday_store, tracer)
 
     case = PromotionUseCase(discounts=[holiday_case, user_case], tracer=tracer)
 
-    servicer = PromotionServicer(case, user_case, tracer)
+    servicer = PromotionServicer(case, user_case, order_case, tracer)
 
     date = datetime.date.today()
     birthday = Date(year=date.year, month=date.month, day=date.day)

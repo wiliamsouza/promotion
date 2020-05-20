@@ -44,7 +44,8 @@ class UserDataStore:
 
         return None
 
-    def create(self, user_id: uuid.UUID, birthday: datetime.date, identity: str, email: str, name: str, password: str) -> UserEntity:
+    def create(self, user_id: uuid.UUID, birthday: datetime.date,
+               identity: str, email: str, name: str, password: str) -> UserEntity:
         """Store an user in database."""
         with self.tracer.start_as_current_span(
             "UserDataStore.create", kind=SERVER

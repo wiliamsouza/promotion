@@ -15,6 +15,7 @@ from promotion import settings
 from promotion.postgresql import Base
 
 from .factories import UserFactory
+from .factories import OrderFactory
 
 engine = create_engine(settings.TEST_DATABASE_URL, echo=True)
 if not database_exists(engine.url):
@@ -36,6 +37,7 @@ def database(connection):
     transaction = connection.begin()
     session = Session(bind=connection)
     UserFactory._meta.sqlalchemy_session = session
+    OrderFactory._meta.sqlalchemy_session = session
     yield session
     session.close()
     transaction.rollback()

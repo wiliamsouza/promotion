@@ -37,7 +37,9 @@ class Order:
     """Order domain entity"""
 
     amount: decimal.Decimal
-    user: User
-    code: uuid.UUID = uuid.uuid4()
-    status: str = "In validation"
-
+    identity: str
+    code: uuid.UUID
+    date: datetime.date
+    status: str = "validating"
+    cashback_percentage: decimal.Decimal = 0
+    cashback_amount: decimal.Decimal = 0

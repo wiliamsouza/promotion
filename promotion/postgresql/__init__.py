@@ -21,7 +21,6 @@ class User(Base):
     email = Column(String)
     name = Column(String)
     password = Column(String)
-    orders = relationship("Order", backref="users", order_by="Order.id")
 
 
 class Order(Base):
@@ -32,5 +31,6 @@ class Order(Base):
     id = Column(UUID(as_uuid=True), default=uuid.uuid4, primary_key=True)
     code = Column(UUID(as_uuid=True))
     amount = Column(DECIMAL)
-    user_id = Column(ForeignKey('users.id'))
     status = Column(String)
+    identity = Column(String)
+    date = Column(Date)
