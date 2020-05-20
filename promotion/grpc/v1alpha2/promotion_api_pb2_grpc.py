@@ -24,6 +24,11 @@ class PromotionAPIStub(object):
         request_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateUserRequest.SerializeToString,
         response_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateUserResponse.FromString,
         )
+    self.CreateOrder = channel.unary_unary(
+        '/promotion.grpc.v1alpha2.PromotionAPI/CreateOrder',
+        request_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateOrderRequestResponse.SerializeToString,
+        response_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateOrderRequestResponse.FromString,
+        )
 
 
 class PromotionAPIServicer(object):
@@ -46,6 +51,14 @@ class PromotionAPIServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def CreateOrder(self, request, context):
+    """CreateOrder
+    This is used to populate order data store.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_PromotionAPIServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -58,6 +71,11 @@ def add_PromotionAPIServicer_to_server(servicer, server):
           servicer.CreateUser,
           request_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateUserRequest.FromString,
           response_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateUserResponse.SerializeToString,
+      ),
+      'CreateOrder': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateOrder,
+          request_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateOrderRequestResponse.FromString,
+          response_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.CreateOrderRequestResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

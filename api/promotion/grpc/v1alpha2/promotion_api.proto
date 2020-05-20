@@ -13,9 +13,21 @@ service PromotionAPI {
   // This retrieve all discounts by product and user IDs.
   rpc RetrievePromotion(RetrievePromotionRequest) returns (RetrievePromotionResponse) {}
 
-  //CreateUser
+  // CreateUser
   // This is used to populate user data store.
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+
+  // CreateOrder
+  // This is used to populate order data store.
+  rpc CreateOrder(CreateOrderRequestResponse) returns (CreateOrderRequestResponse) {}
+}
+
+message CreateOrderRequestResponse {
+  string code = 1;
+  string identity = 2;
+  string amount = 3;
+  string status = 4;
+  google.type.Date date = 5;
 }
 
 message CreateUserRequest {

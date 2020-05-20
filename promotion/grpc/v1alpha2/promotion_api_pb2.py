@@ -20,11 +20,70 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='promotion.grpc.v1alpha2',
   syntax='proto3',
   serialized_options=b'Z\010v1alpha2',
-  serialized_pb=b'\n+promotion/grpc/v1alpha2/promotion_api.proto\x12\x17promotion.grpc.v1alpha2\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha2/discount.proto\"\x8f\x01\n\x11\x43reateUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\x12\x10\n\x08password\x18\x06 \x01(\t\"~\n\x12\x43reateUserResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha2.Discount2\xf5\x01\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha2.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha2.RetrievePromotionResponse\"\x00\x12g\n\nCreateUser\x12*.promotion.grpc.v1alpha2.CreateUserRequest\x1a+.promotion.grpc.v1alpha2.CreateUserResponse\"\x00\x42\nZ\x08v1alpha2b\x06proto3'
+  serialized_pb=b'\n+promotion/grpc/v1alpha2/promotion_api.proto\x12\x17promotion.grpc.v1alpha2\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha2/discount.proto\"}\n\x1a\x43reateOrderRequestResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x10\n\x08identity\x18\x02 \x01(\t\x12\x0e\n\x06\x61mount\x18\x03 \x01(\t\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\"\x8f\x01\n\x11\x43reateUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\x12\x10\n\x08password\x18\x06 \x01(\t\"~\n\x12\x43reateUserResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha2.Discount2\xf0\x02\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha2.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha2.RetrievePromotionResponse\"\x00\x12g\n\nCreateUser\x12*.promotion.grpc.v1alpha2.CreateUserRequest\x1a+.promotion.grpc.v1alpha2.CreateUserResponse\"\x00\x12y\n\x0b\x43reateOrder\x12\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\x1a\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\"\x00\x42\nZ\x08v1alpha2b\x06proto3'
   ,
   dependencies=[google_dot_type_dot_date__pb2.DESCRIPTOR,promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2.DESCRIPTOR,])
 
 
+
+
+_CREATEORDERREQUESTRESPONSE = _descriptor.Descriptor(
+  name='CreateOrderRequestResponse',
+  full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='code', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.code', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='identity', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.identity', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='amount', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.amount', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.status', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='date', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.date', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=136,
+  serialized_end=261,
+)
 
 
 _CREATEUSERREQUEST = _descriptor.Descriptor(
@@ -88,8 +147,8 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=137,
-  serialized_end=280,
+  serialized_start=264,
+  serialized_end=407,
 )
 
 
@@ -147,8 +206,8 @@ _CREATEUSERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=282,
-  serialized_end=408,
+  serialized_start=409,
+  serialized_end=535,
 )
 
 
@@ -185,8 +244,8 @@ _RETRIEVEPROMOTIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=410,
-  serialized_end=473,
+  serialized_start=537,
+  serialized_end=600,
 )
 
 
@@ -216,18 +275,27 @@ _RETRIEVEPROMOTIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=475,
-  serialized_end=556,
+  serialized_start=602,
+  serialized_end=683,
 )
 
+_CREATEORDERREQUESTRESPONSE.fields_by_name['date'].message_type = google_dot_type_dot_date__pb2._DATE
 _CREATEUSERREQUEST.fields_by_name['date_of_birth'].message_type = google_dot_type_dot_date__pb2._DATE
 _CREATEUSERRESPONSE.fields_by_name['date_of_birth'].message_type = google_dot_type_dot_date__pb2._DATE
 _RETRIEVEPROMOTIONRESPONSE.fields_by_name['discounts'].message_type = promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2._DISCOUNT
+DESCRIPTOR.message_types_by_name['CreateOrderRequestResponse'] = _CREATEORDERREQUESTRESPONSE
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
 DESCRIPTOR.message_types_by_name['CreateUserResponse'] = _CREATEUSERRESPONSE
 DESCRIPTOR.message_types_by_name['RetrievePromotionRequest'] = _RETRIEVEPROMOTIONREQUEST
 DESCRIPTOR.message_types_by_name['RetrievePromotionResponse'] = _RETRIEVEPROMOTIONRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+CreateOrderRequestResponse = _reflection.GeneratedProtocolMessageType('CreateOrderRequestResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEORDERREQUESTRESPONSE,
+  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
+  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.CreateOrderRequestResponse)
+  })
+_sym_db.RegisterMessage(CreateOrderRequestResponse)
 
 CreateUserRequest = _reflection.GeneratedProtocolMessageType('CreateUserRequest', (_message.Message,), {
   'DESCRIPTOR' : _CREATEUSERREQUEST,
@@ -266,8 +334,8 @@ _PROMOTIONAPI = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=559,
-  serialized_end=804,
+  serialized_start=686,
+  serialized_end=1054,
   methods=[
   _descriptor.MethodDescriptor(
     name='RetrievePromotion',
@@ -285,6 +353,15 @@ _PROMOTIONAPI = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_CREATEUSERREQUEST,
     output_type=_CREATEUSERRESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateOrder',
+    full_name='promotion.grpc.v1alpha2.PromotionAPI.CreateOrder',
+    index=2,
+    containing_service=None,
+    input_type=_CREATEORDERREQUESTRESPONSE,
+    output_type=_CREATEORDERREQUESTRESPONSE,
     serialized_options=None,
   ),
 ])
