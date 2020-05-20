@@ -4,4 +4,10 @@ omit =
     promotion/grpc/v1alpha1/discount_pb2.py
     promotion/grpc/v1alpha1/promotion_api_pb2.py
     promotion/grpc/v1alpha1/promotion_api_pb2_grpc.py
+    promotion/grpc/v1alpha2/discount_pb2.py
+    promotion/grpc/v1alpha2/promotion_api_pb2.py
+    promotion/grpc/v1alpha2/promotion_api_pb2_grpc.py
+    promotion/command/control.py
+    promotion/command/daemon.py
+
 
