@@ -35,6 +35,7 @@ class UserDataStore:
             if user:
                 span.set_attribute("is_user_found?", True)
                 return UserEntity(
+                    user_id=user.id,
                     birthday=user.birthday,
                     identity=user.identity,
                     email=user.email,
@@ -72,6 +73,7 @@ class UserDataStore:
                 )
             )
             return UserEntity(
+                user_id=user.id,
                 birthday=user.birthday,
                 identity=user.identity,
                 email=user.email,
