@@ -28,6 +28,7 @@ class User:
     identity: str
     email: str
     name: str
+    # TODO: Remove this from here.
     password: str
     user_id: uuid.UUID = uuid.uuid4()
 
