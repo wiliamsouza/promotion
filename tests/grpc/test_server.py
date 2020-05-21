@@ -9,10 +9,12 @@ from promotion.grpc.server import PromotionServicer
 from promotion.grpc.v1alpha2.promotion_api_pb2 import (
     CreateUserRequest,
     CreateUserResponse,
+    CreateOrderRequestResponse,
     RetrievePromotionRequest,
 )
 from promotion.holiday import HolidayUseCase
 from promotion.postgresql import User
+from promotion.postgresql import Order
 from promotion.postgresql.user import UserDataStore
 from promotion.postgresql.order import OrderDataStore
 from promotion.settings.holiday import HolidayDataStore
@@ -81,3 +83,31 @@ def test_server_create_user(database, tracer):
     assert result.identity == "03303441965"
     assert result.email == "user@email.com"
     assert result.name == "User name"
+    assert result.user_id == str(user_id)
+
+
+def test_server_create_order(database, tracer):
+    user_store = OrderDataStore(database, tracer)
+    user_case = OrderUseCase(user_store, tracer)
+
+    order_store = OrderDataStore(database, tracer)
+    order_case = OrderUseCase(order_store, tracer)
+
+    case = PromotionUseCase(discounts=[], tracer=tracer)
+
+    servicer = PromotionServicer(case, user_case, order_case, tracer)
+
+    date = datetime.date.today()
+    date = Date(year=date.year, month=date.month, day=date.day)
+    order_code = uuid.uuid4()
+    request = CreateOrderRequestResponse(
+        code=str(order_code).encode(),
+        identity="03303441965",
+        amount="100",
+        status="validating",
+        date=date,
+    )
+    result = servicer.CreateOrder(request, None)
+
+    assert database.query(Order).one()
+    assert result.status == "validating"

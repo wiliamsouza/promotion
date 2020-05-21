@@ -85,12 +85,12 @@ class PromotionServicer(PromotionAPIServicer):
                 request.date.day,
             )
 
-            order = self.order_use_case.create(
+            order = self.order_use_case.place_order(
                 request.code,
                 request.identity,
                 request.amount,
-                request.status,
                 date,
+                request.status,
             )
 
             order_date = Date(
@@ -99,9 +99,9 @@ class PromotionServicer(PromotionAPIServicer):
                 day=order.date.day,
             )
             return CreateOrderRequestResponse(
-                code=order.code,
+                code=str(order.code),
                 identity=order.identity,
-                amount=order.amount,
+                amount=str(order.amount),
                 status=order.status,
                 date=order_date,
             )

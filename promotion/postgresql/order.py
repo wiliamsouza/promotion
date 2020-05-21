@@ -5,7 +5,7 @@ import uuid
 from typing import Optional
 
 from opentelemetry import trace
-from opentelemetry.trace import status
+from opentelemetry.trace import status as trace_status
 from sqlalchemy.exc import SQLAlchemyError
 
 from promotion.entity import User as UserEntity
@@ -67,8 +67,8 @@ class OrderDataStore:
                 self.database.rollback()
 
             span.set_status(
-                status.Status(
-                    canonical_code=status.StatusCanonicalCode.OK,
+                trace_status.Status(
+                    canonical_code=trace_status.StatusCanonicalCode.OK,
                     description="Success creating order",
                 )
             )
