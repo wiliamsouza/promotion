@@ -6,6 +6,7 @@ from decimal import Decimal
 
 from opentelemetry import trace
 
+from promotion import settings
 from promotion.entity import Discount
 from promotion.protocol import DiscountDataStore
 
@@ -21,15 +22,23 @@ class OrderUseCase:
         self.store = store
         self.tracer = tracer
 
-    def discount(self, user_id: uuid.UUID) -> Discount:
-        """Give discount if the order amount is in the defined range."""
+    def discount(self, _user_id: uuid.UUID) -> Discount:
+        """Give zero discount this implementation do not follow the same discount rules."""
         with self.tracer.start_as_current_span(
             "OrderUseCase.discount", kind=SERVER
         ) as span:
+            span.set_attribute("given_discount_percentage", str(discount.percentage))
             discount = Discount(percentage=Decimal(0))
             return discount
 
-    def create(self, code, identity, amount, status, date):
-        """Create an order."""
+    def place_order(self, code, identity, amount, date, status="validating"):
+        """Place a new order.
+
+        For a configured list of identity the status will be "approved".
+        """
         with self.tracer.start_as_current_span("OrderUseCase.create", kind=SERVER):
+
+            if identity in settings.APPROVED_ORDER_IDENTITIES:
+                status = "approved"
+
             return self.store.create(code, identity, amount, status, date)

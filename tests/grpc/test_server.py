@@ -22,7 +22,7 @@ from promotion.order import OrderUseCase
 from ..factories import UserFactory
 
 
-def test_server(database, tracer):
+def test_server_retrieve_promotion(database, tracer):
     user = UserFactory.create()
     assert database.query(User).one()
 

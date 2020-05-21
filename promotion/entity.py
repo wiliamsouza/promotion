@@ -37,6 +37,7 @@ class User:
 class Order:
     """Order domain entity"""
 
+    # TODO: Change to amount_cents
     amount: decimal.Decimal
     identity: str
     code: uuid.UUID
