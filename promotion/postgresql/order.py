@@ -38,7 +38,7 @@ class OrderDataStore:
             if order:
                 span.set_attribute("is_order_found?", True)
                 return OrderEntity(
-                    amount=order.amount,
+                    amount_cents=order.amount_cents,
                     code=order.code,
                     status=order.status,
                     identity=order.identity,
@@ -47,7 +47,7 @@ class OrderDataStore:
 
         return None
 
-    def create(self, code: uuid.UUID, identity:str , amount: decimal.Decimal, status: str, date: datetime.date) -> OrderEntity:
+    def create(self, code: uuid.UUID, identity:str , amount_cents: decimal.Decimal, status: str, date: datetime.date) -> OrderEntity:
         """Store an order in database."""
         with self.tracer.start_as_current_span(
             "OrderDataStore.create", kind=SERVER
@@ -55,7 +55,7 @@ class OrderDataStore:
 
             order = OrderModel(
                 code=code,
-                amount=amount,
+                amount_cents=amount_cents,
                 status=status,
                 identity=identity,
                 date=date,
@@ -73,7 +73,7 @@ class OrderDataStore:
                 )
             )
             return OrderEntity(
-                amount=order.amount,
+                amount_cents=order.amount_cents,
                 code=order.code,
                 status=order.status,
                 identity=order.identity,

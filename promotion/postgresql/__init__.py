@@ -1,7 +1,7 @@
 """Postgres using SQLAlchemy data store implementation."""
 import uuid
 
-from sqlalchemy import Column, Date, String, ForeignKey
+from sqlalchemy import Column, Date, String, ForeignKey, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.types import DECIMAL
@@ -30,7 +30,7 @@ class Order(Base):
 
     id = Column(UUID(as_uuid=True), default=uuid.uuid4, primary_key=True)
     code = Column(UUID(as_uuid=True))
-    amount = Column(DECIMAL)
+    amount_cents = Column(Integer)
     status = Column(String)
     identity = Column(String)
     date = Column(Date)

@@ -16,6 +16,6 @@ def test_order_data_store(database, tracer):
     result = store.query(order.code)
 
     assert result.date == datetime.date.today()
-    assert result.amount == decimal.Decimal('99.90')
+    assert result.amount_cents == 9990
     assert result.status == "validating"
     assert result.identity == "03403791746"

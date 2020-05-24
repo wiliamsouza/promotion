@@ -37,11 +37,10 @@ class User:
 class Order:
     """Order domain entity"""
 
-    # TODO: Change to amount_cents
-    amount: decimal.Decimal
-    identity: str
+    amount_cents: int
     code: uuid.UUID
     date: datetime.date
+    identity: str
     status: str = "validating"
     cashback_percentage: decimal.Decimal = 0
     cashback_amount: decimal.Decimal = 0

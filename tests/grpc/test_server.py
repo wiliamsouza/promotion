@@ -103,7 +103,7 @@ def test_server_create_order(database, tracer):
     request = CreateOrderRequestResponse(
         code=str(order_code).encode(),
         identity="03303441965",
-        amount="100",
+        amount_cents=100,
         status="validating",
         date=date,
     )

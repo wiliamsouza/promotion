@@ -16,7 +16,7 @@ class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
 class OrderFactory(factory.alchemy.SQLAlchemyModelFactory):
     id = factory.Faker("uuid4")
     code = factory.Faker("uuid4")
-    amount = 99.90
+    amount_cents = 9990
     status = "validating"
     identity = "03403791746"
     date = factory.LazyFunction(datetime.date.today)

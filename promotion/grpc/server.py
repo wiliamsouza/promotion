@@ -88,7 +88,7 @@ class PromotionServicer(PromotionAPIServicer):
             order = self.order_use_case.place_order(
                 request.code,
                 request.identity,
-                request.amount,
+                request.amount_cents,
                 date,
                 request.status,
             )
@@ -101,7 +101,7 @@ class PromotionServicer(PromotionAPIServicer):
             return CreateOrderRequestResponse(
                 code=str(order.code),
                 identity=order.identity,
-                amount=str(order.amount),
+                amount_cents=order.amount_cents,
                 status=order.status,
                 date=order_date,
             )

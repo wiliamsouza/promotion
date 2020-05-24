@@ -25,7 +25,7 @@ service PromotionAPI {
 message CreateOrderRequestResponse {
   string code = 1;
   string identity = 2;
-  string amount = 3;
+  int32 amount_cents = 3;
   string status = 4;
   google.type.Date date = 5;
 }

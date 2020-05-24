@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('orders',
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
     sa.Column('code', postgresql.UUID(as_uuid=True), nullable=True),
-    sa.Column('amount', sa.DECIMAL(), nullable=True),
+    sa.Column('amount_cents', sa.Integer(), nullable=True),
     sa.Column('status', sa.String(), nullable=True),
     sa.Column('identity', sa.String(), nullable=True),
     sa.Column('date', sa.Date(), nullable=True),
