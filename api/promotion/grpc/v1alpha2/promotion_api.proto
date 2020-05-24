@@ -20,6 +20,22 @@ service PromotionAPI {
   // CreateOrder
   // This is used to populate order data store.
   rpc CreateOrder(CreateOrderRequestResponse) returns (CreateOrderRequestResponse) {}
+
+  // ListOrdersWithCashback
+  // This is used to list orders along side with cashback information.
+  rpc ListOrdersWithCashback(ListOrderRequest) returns (ListOrderResponse) {}
+}
+
+message ListOrderRequest {}
+
+message ListOrderResponse {
+  int32 amount_cents = 1;
+  int32 amount_cashback_cents = 2;
+  string code = 3;
+  float cashback_percentage = 4;
+  google.type.Date date = 5;
+  string identity = 6;
+  string status = 7;
 }
 
 message CreateOrderRequestResponse {

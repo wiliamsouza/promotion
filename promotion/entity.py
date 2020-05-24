@@ -42,5 +42,5 @@ class Order:
     date: datetime.date
     identity: str
     status: str = "validating"
-    cashback_percentage: decimal.Decimal = 0
-    cashback_amount: decimal.Decimal = 0
+    amount_cashback_cents: int = 0
+    cashback_percentage: float = 0.0
