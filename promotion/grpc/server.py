@@ -10,6 +10,7 @@ from promotion.grpc.v1alpha2.promotion_api_pb2 import (
     CreateUserResponse,
     RetrievePromotionResponse,
     ListOrderResponse,
+    Order,
 )
 from promotion.grpc.v1alpha2.promotion_api_pb2_grpc import PromotionAPIServicer
 from promotion.protocol import Promotion
@@ -111,13 +112,23 @@ class PromotionServicer(PromotionAPIServicer):
         with self.tracer.start_as_current_span(
             "PromotionServicer.ListOrdersWithCashback", kind=SERVER
         ):
-            order = self.order_use_case.list_order_with_cashback()
-            return ListOrderResponse(
-                amount_cents=order.amount_cents,
-                amount_cashback_cents=order.amount_cashback_cents,
-                code=order.code,
-                cashback_percentage=order.cashback_percentage,
-                date=order.date,
-                identity=order.identity,
-                status=order.status,
-            )
+            cashbacks = []
+            orders = self.order_use_case.list_orders_with_cashback()
+            for order in orders:
+                order_date = Date(
+                    year=order.date.year,
+                    month=order.date.month,
+                    day=order.date.day,
+                )
+                cashbacks.append(
+                    Order(
+                        amount_cents=order.amount_cents,
+                        amount_cashback_cents=order.amount_cashback_cents,
+                        code=str(order.code),
+                        cashback_percentage=order.cashback_percentage,
+                        date=order_date,
+                        identity=order.identity,
+                        status=order.status,
+                    )
+                )
+            return ListOrderResponse(orders=cashbacks)

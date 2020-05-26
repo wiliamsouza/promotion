@@ -21,7 +21,7 @@ from promotion.settings.holiday import HolidayDataStore
 from promotion.user import UserUseCase
 from promotion.order import OrderUseCase
 
-from ..factories import UserFactory
+from ..factories import OrderFactory, UserFactory
 
 
 def test_server_retrieve_promotion(database, tracer):
@@ -111,3 +111,25 @@ def test_server_create_order(database, tracer):
 
     assert database.query(Order).one()
     assert result.status == "validating"
+
+def test_cashback_from_thousand_to_thousand_five_hundred(database, tracer):
+    OrderFactory.create_batch(10, amount_cents=130000)
+    assert database.query(Order).count() == 10
+
+    user_store = OrderDataStore(database, tracer)
+    user_case = OrderUseCase(user_store, tracer)
+
+    order_store = OrderDataStore(database, tracer)
+    order_case = OrderUseCase(order_store, tracer)
+
+    case = PromotionUseCase(discounts=[], tracer=tracer)
+
+    servicer = PromotionServicer(case, user_case, order_case, tracer)
+
+    request = CreateUserRequest()
+    response = servicer.ListOrdersWithCashback(request, None)
+
+    assert len(response.orders) == 10
+    result = response.orders[0]
+    assert result.amount_cashback_cents == 19500
+    assert result.cashback_percentage == 15.0
