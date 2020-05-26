@@ -1,16 +1,13 @@
 """Order data store implementation."""
 import datetime
-import decimal
 import uuid
-from typing import Optional
+from typing import List, Optional
 
 from opentelemetry import trace
 from opentelemetry.trace import status as trace_status
 from sqlalchemy.exc import SQLAlchemyError
 
-from promotion.entity import User as UserEntity
 from promotion.entity import Order as OrderEntity
-from promotion.postgresql import User as UserModel
 from promotion.postgresql import Order as OrderModel
 
 SERVER = trace.SpanKind.SERVER
@@ -47,7 +44,30 @@ class OrderDataStore:
 
         return None
 
-    def create(self, code: uuid.UUID, identity:str , amount_cents: decimal.Decimal, status: str, date: datetime.date) -> OrderEntity:
+    def query_all(self) -> List[OrderEntity]:
+        """Query all orders."""
+
+        with self.tracer.start_as_current_span(
+            "OrderDataStore.query_all", kind=SERVER
+        ) as span:
+
+            entities = []
+            orders = self.database.query(OrderModel).all()
+            span.set_attribute("total_orders", len(orders))
+            for order in orders:
+                entities.append(
+                    OrderEntity(
+                        amount_cents=order.amount_cents,
+                        code=order.code,
+                        status=order.status,
+                        identity=order.identity,
+                        date=order.date,
+                    )
+                )
+
+            return entities
+
+    def create(self, code: uuid.UUID, identity:str , amount_cents: int, status: str, date: datetime.date) -> OrderEntity:
         """Store an order in database."""
         with self.tracer.start_as_current_span(
             "OrderDataStore.create", kind=SERVER

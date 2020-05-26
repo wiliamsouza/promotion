@@ -24,13 +24,20 @@ def test_query_user_data_store(database, tracer):
     # TODO: Change it to be a secure password hash
     assert result.password == user.password
 
+
 def test_create_user_data_store(database, tracer):
     assert database.query(User).one_or_none() is None
     store = UserDataStore(database, tracer)
 
     uid = uuid.uuid4()
-    result = store.create(uid, datetime.date.today(), "13723774968",
-                          "jane@doe.com", "Jane Doe", "swordfish")
+    result = store.create(
+        uid,
+        datetime.date.today(),
+        "13723774968",
+        "jane@doe.com",
+        "Jane Doe",
+        "swordfish"
+    )
 
     assert result.user_id == uid
     assert result.birthday == datetime.date.today()
