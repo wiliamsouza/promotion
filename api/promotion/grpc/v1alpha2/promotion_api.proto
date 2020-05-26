@@ -29,6 +29,10 @@ service PromotionAPI {
 message ListOrderRequest {}
 
 message ListOrderResponse {
+  repeated Order orders = 1;
+}
+
+message Order {
   int32 amount_cents = 1;
   int32 amount_cashback_cents = 2;
   string code = 3;
