@@ -11,6 +11,7 @@ from promotion.grpc.v1alpha2.promotion_api_pb2 import (
     RetrievePromotionResponse,
     ListOrderResponse,
     Order,
+    RetrieveBalanceResponse,
 )
 from promotion.grpc.v1alpha2.promotion_api_pb2_grpc import PromotionAPIServicer
 from promotion.protocol import Promotion
@@ -24,8 +25,10 @@ class PromotionServicer(PromotionAPIServicer):
     """Implements gRPC product API server"""
 
     def __init__(self, promotion_use_case: Promotion,
-                 user_use_case: UserUseCase, order_use_case: OrderUseCase, tracer
+                 user_use_case: UserUseCase, order_use_case: OrderUseCase,
+                 balance_use_case, tracer
                  ):
+        self.balance_use_case = balance_use_case
         self.promotion_use_case = promotion_use_case
         self.user_use_case = user_use_case
         self.order_use_case = order_use_case
@@ -132,3 +135,11 @@ class PromotionServicer(PromotionAPIServicer):
                     )
                 )
             return ListOrderResponse(orders=cashbacks)
+
+    def RetrieveBalance(self, request, context):
+        with self.tracer.start_as_current_span(
+            "PromotionServicer.RetrieveBalance", kind=SERVER
+        ):
+
+            balance = self.balance_use_case.balance()
+            return RetrieveBalanceResponse(balance=balance.total_amount)
