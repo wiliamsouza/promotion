@@ -44,6 +44,31 @@ class OrderDataStore:
 
         return None
 
+    def query_status(self, status: str) -> List[OrderEntity]:
+        """Query filtering order for the given status."""
+
+        with self.tracer.start_as_current_span(
+            "OrderDataStore.query_status", kind=SERVER
+        ) as span:
+
+            entities = []
+            span.set_attribute("status", str(status))
+            orders = (
+                self.database.query(OrderModel).filter(OrderModel.status == status)
+            )
+            for order in orders:
+                entities.append(
+                    OrderEntity(
+                        amount_cents=order.amount_cents,
+                        code=order.code,
+                        status=order.status,
+                        identity=order.identity,
+                        date=order.date,
+                    )
+                )
+            return entities
+
+
     def query_all(self) -> List[OrderEntity]:
         """Query all orders."""
 
