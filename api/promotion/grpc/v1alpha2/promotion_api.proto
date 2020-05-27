@@ -24,6 +24,10 @@ service PromotionAPI {
   // ListOrdersWithCashback
   // This is used to list orders along side with cashback information.
   rpc ListOrdersWithCashback(ListOrderRequest) returns (ListOrderResponse) {}
+
+  // RetrieveBalance.
+  // This retrieve cashback balance .
+  rpc RetrieveBalance(RetrieveBalanceRequest) returns (RetrieveBalanceResponse) {}
 }
 
 message ListOrderRequest {}
@@ -74,4 +78,11 @@ message RetrievePromotionRequest {
 
 message RetrievePromotionResponse {
   repeated promotion.grpc.v1alpha2.Discount discounts = 1;
+}
+
+message RetrieveBalanceRequest {
+}
+
+message RetrieveBalanceResponse {
+  int32 balance = 1;
 }

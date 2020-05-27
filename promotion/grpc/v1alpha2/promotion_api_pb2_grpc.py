@@ -34,6 +34,11 @@ class PromotionAPIStub(object):
         request_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.ListOrderRequest.SerializeToString,
         response_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.ListOrderResponse.FromString,
         )
+    self.RetrieveBalance = channel.unary_unary(
+        '/promotion.grpc.v1alpha2.PromotionAPI/RetrieveBalance',
+        request_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceRequest.SerializeToString,
+        response_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceResponse.FromString,
+        )
 
 
 class PromotionAPIServicer(object):
@@ -72,6 +77,14 @@ class PromotionAPIServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def RetrieveBalance(self, request, context):
+    """RetrieveBalance.
+    This retrieve cashback balance .
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_PromotionAPIServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -94,6 +107,11 @@ def add_PromotionAPIServicer_to_server(servicer, server):
           servicer.ListOrdersWithCashback,
           request_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.ListOrderRequest.FromString,
           response_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.ListOrderResponse.SerializeToString,
+      ),
+      'RetrieveBalance': grpc.unary_unary_rpc_method_handler(
+          servicer.RetrieveBalance,
+          request_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceRequest.FromString,
+          response_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

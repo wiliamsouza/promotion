@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='promotion.grpc.v1alpha2',
   syntax='proto3',
   serialized_options=b'Z\010v1alpha2',
-  serialized_pb=b'\n+promotion/grpc/v1alpha2/promotion_api.proto\x12\x17promotion.grpc.v1alpha2\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha2/discount.proto\"\x12\n\x10ListOrderRequest\"C\n\x11ListOrderResponse\x12.\n\x06orders\x18\x01 \x03(\x0b\x32\x1e.promotion.grpc.v1alpha2.Order\"\xaa\x01\n\x05Order\x12\x14\n\x0c\x61mount_cents\x18\x01 \x01(\x05\x12\x1d\n\x15\x61mount_cashback_cents\x18\x02 \x01(\x05\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x1b\n\x13\x63\x61shback_percentage\x18\x04 \x01(\x02\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x06 \x01(\t\x12\x0e\n\x06status\x18\x07 \x01(\t\"\x83\x01\n\x1a\x43reateOrderRequestResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x10\n\x08identity\x18\x02 \x01(\t\x12\x14\n\x0c\x61mount_cents\x18\x03 \x01(\x05\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\"\x8f\x01\n\x11\x43reateUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\x12\x10\n\x08password\x18\x06 \x01(\t\"~\n\x12\x43reateUserResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha2.Discount2\xe3\x03\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha2.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha2.RetrievePromotionResponse\"\x00\x12g\n\nCreateUser\x12*.promotion.grpc.v1alpha2.CreateUserRequest\x1a+.promotion.grpc.v1alpha2.CreateUserResponse\"\x00\x12y\n\x0b\x43reateOrder\x12\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\x1a\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\"\x00\x12q\n\x16ListOrdersWithCashback\x12).promotion.grpc.v1alpha2.ListOrderRequest\x1a*.promotion.grpc.v1alpha2.ListOrderResponse\"\x00\x42\nZ\x08v1alpha2b\x06proto3'
+  serialized_pb=b'\n+promotion/grpc/v1alpha2/promotion_api.proto\x12\x17promotion.grpc.v1alpha2\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha2/discount.proto\"\x12\n\x10ListOrderRequest\"C\n\x11ListOrderResponse\x12.\n\x06orders\x18\x01 \x03(\x0b\x32\x1e.promotion.grpc.v1alpha2.Order\"\xaa\x01\n\x05Order\x12\x14\n\x0c\x61mount_cents\x18\x01 \x01(\x05\x12\x1d\n\x15\x61mount_cashback_cents\x18\x02 \x01(\x05\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x1b\n\x13\x63\x61shback_percentage\x18\x04 \x01(\x02\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x06 \x01(\t\x12\x0e\n\x06status\x18\x07 \x01(\t\"\x83\x01\n\x1a\x43reateOrderRequestResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x10\n\x08identity\x18\x02 \x01(\t\x12\x14\n\x0c\x61mount_cents\x18\x03 \x01(\x05\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\"\x8f\x01\n\x11\x43reateUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\x12\x10\n\x08password\x18\x06 \x01(\t\"~\n\x12\x43reateUserResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha2.Discount\"\x18\n\x16RetrieveBalanceRequest\"*\n\x17RetrieveBalanceResponse\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\x32\xdb\x04\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha2.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha2.RetrievePromotionResponse\"\x00\x12g\n\nCreateUser\x12*.promotion.grpc.v1alpha2.CreateUserRequest\x1a+.promotion.grpc.v1alpha2.CreateUserResponse\"\x00\x12y\n\x0b\x43reateOrder\x12\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\x1a\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\"\x00\x12q\n\x16ListOrdersWithCashback\x12).promotion.grpc.v1alpha2.ListOrderRequest\x1a*.promotion.grpc.v1alpha2.ListOrderResponse\"\x00\x12v\n\x0fRetrieveBalance\x12/.promotion.grpc.v1alpha2.RetrieveBalanceRequest\x1a\x30.promotion.grpc.v1alpha2.RetrieveBalanceResponse\"\x00\x42\nZ\x08v1alpha2b\x06proto3'
   ,
   dependencies=[google_dot_type_dot_date__pb2.DESCRIPTOR,promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2.DESCRIPTOR,])
 
@@ -407,6 +407,61 @@ _RETRIEVEPROMOTIONRESPONSE = _descriptor.Descriptor(
   serialized_end=952,
 )
 
+
+_RETRIEVEBALANCEREQUEST = _descriptor.Descriptor(
+  name='RetrieveBalanceRequest',
+  full_name='promotion.grpc.v1alpha2.RetrieveBalanceRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=954,
+  serialized_end=978,
+)
+
+
+_RETRIEVEBALANCERESPONSE = _descriptor.Descriptor(
+  name='RetrieveBalanceResponse',
+  full_name='promotion.grpc.v1alpha2.RetrieveBalanceResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='balance', full_name='promotion.grpc.v1alpha2.RetrieveBalanceResponse.balance', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=980,
+  serialized_end=1022,
+)
+
 _LISTORDERRESPONSE.fields_by_name['orders'].message_type = _ORDER
 _ORDER.fields_by_name['date'].message_type = google_dot_type_dot_date__pb2._DATE
 _CREATEORDERREQUESTRESPONSE.fields_by_name['date'].message_type = google_dot_type_dot_date__pb2._DATE
@@ -421,6 +476,8 @@ DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
 DESCRIPTOR.message_types_by_name['CreateUserResponse'] = _CREATEUSERRESPONSE
 DESCRIPTOR.message_types_by_name['RetrievePromotionRequest'] = _RETRIEVEPROMOTIONREQUEST
 DESCRIPTOR.message_types_by_name['RetrievePromotionResponse'] = _RETRIEVEPROMOTIONRESPONSE
+DESCRIPTOR.message_types_by_name['RetrieveBalanceRequest'] = _RETRIEVEBALANCEREQUEST
+DESCRIPTOR.message_types_by_name['RetrieveBalanceResponse'] = _RETRIEVEBALANCERESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ListOrderRequest = _reflection.GeneratedProtocolMessageType('ListOrderRequest', (_message.Message,), {
@@ -479,6 +536,20 @@ RetrievePromotionResponse = _reflection.GeneratedProtocolMessageType('RetrievePr
   })
 _sym_db.RegisterMessage(RetrievePromotionResponse)
 
+RetrieveBalanceRequest = _reflection.GeneratedProtocolMessageType('RetrieveBalanceRequest', (_message.Message,), {
+  'DESCRIPTOR' : _RETRIEVEBALANCEREQUEST,
+  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
+  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrieveBalanceRequest)
+  })
+_sym_db.RegisterMessage(RetrieveBalanceRequest)
+
+RetrieveBalanceResponse = _reflection.GeneratedProtocolMessageType('RetrieveBalanceResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RETRIEVEBALANCERESPONSE,
+  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
+  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrieveBalanceResponse)
+  })
+_sym_db.RegisterMessage(RetrieveBalanceResponse)
+
 
 DESCRIPTOR._options = None
 
@@ -488,8 +559,8 @@ _PROMOTIONAPI = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=955,
-  serialized_end=1438,
+  serialized_start=1025,
+  serialized_end=1628,
   methods=[
   _descriptor.MethodDescriptor(
     name='RetrievePromotion',
@@ -525,6 +596,15 @@ _PROMOTIONAPI = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_LISTORDERREQUEST,
     output_type=_LISTORDERRESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RetrieveBalance',
+    full_name='promotion.grpc.v1alpha2.PromotionAPI.RetrieveBalance',
+    index=4,
+    containing_service=None,
+    input_type=_RETRIEVEBALANCEREQUEST,
+    output_type=_RETRIEVEBALANCERESPONSE,
     serialized_options=None,
   ),
 ])
