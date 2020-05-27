@@ -5,6 +5,11 @@ import decimal
 import uuid
 from typing import List
 
+@dataclasses.dataclass
+class Balance:
+    """Balance domain entity"""
+
+    total_amount: int
 
 @dataclasses.dataclass
 class Discount:
