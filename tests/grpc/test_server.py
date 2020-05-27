@@ -4,6 +4,7 @@ import uuid
 
 from google.type.date_pb2 import Date
 
+from promotion import settings
 from promotion import PromotionUseCase
 from promotion.grpc.server import PromotionServicer
 from promotion.grpc.v1alpha2.promotion_api_pb2 import (
@@ -20,6 +21,7 @@ from promotion.postgresql.order import OrderDataStore
 from promotion.settings.holiday import HolidayDataStore
 from promotion.user import UserUseCase
 from promotion.order import OrderUseCase
+from promotion.balance import BalanceUseCase, BalanceClient
 
 from ..factories import OrderFactory, UserFactory
 
@@ -38,9 +40,12 @@ def test_server_retrieve_promotion(database, tracer):
     holiday_store = HolidayDataStore(date, tracer)
     holiday_case = HolidayUseCase(holiday_store, tracer)
 
+    balance_client = BalanceClient(settings.BALANCE_TOKEN)
+    balance_case = BalanceUseCase(order_case, balance_client, tracer)
+
     case = PromotionUseCase(discounts=[holiday_case, user_case], tracer=tracer)
 
-    servicer = PromotionServicer(case, user_case, order_case, tracer)
+    servicer = PromotionServicer(case, user_case, order_case, balance_case, tracer)
 
     request = RetrievePromotionRequest(
         user_id=str(user.id), product_id=str(uuid.uuid4()).encode()
@@ -61,9 +66,12 @@ def test_server_create_user(database, tracer):
     holiday_store = HolidayDataStore(date, tracer)
     holiday_case = HolidayUseCase(holiday_store, tracer)
 
+    balance_client = BalanceClient(settings.BALANCE_TOKEN)
+    balance_case = BalanceUseCase(order_case, balance_client, tracer)
+
     case = PromotionUseCase(discounts=[holiday_case, user_case], tracer=tracer)
 
-    servicer = PromotionServicer(case, user_case, order_case, tracer)
+    servicer = PromotionServicer(case, user_case, order_case, balance_case, tracer)
 
     date = datetime.date.today()
     birthday = Date(year=date.year, month=date.month, day=date.day)
@@ -93,9 +101,12 @@ def test_server_create_order(database, tracer):
     order_store = OrderDataStore(database, tracer)
     order_case = OrderUseCase(order_store, tracer)
 
+    balance_client = BalanceClient(settings.BALANCE_TOKEN)
+    balance_case = BalanceUseCase(order_case, balance_client, tracer)
+
     case = PromotionUseCase(discounts=[], tracer=tracer)
 
-    servicer = PromotionServicer(case, user_case, order_case, tracer)
+    servicer = PromotionServicer(case, user_case, order_case, balance_case, tracer)
 
     date = datetime.date.today()
     date = Date(year=date.year, month=date.month, day=date.day)
@@ -122,9 +133,12 @@ def test_cashback_from_thousand_to_thousand_five_hundred(database, tracer):
     order_store = OrderDataStore(database, tracer)
     order_case = OrderUseCase(order_store, tracer)
 
+    balance_client = BalanceClient(settings.BALANCE_TOKEN)
+    balance_case = BalanceUseCase(order_case, balance_client, tracer)
+
     case = PromotionUseCase(discounts=[], tracer=tracer)
 
-    servicer = PromotionServicer(case, user_case, order_case, tracer)
+    servicer = PromotionServicer(case, user_case, order_case, balance_case, tracer)
 
     request = CreateUserRequest()
     response = servicer.ListOrdersWithCashback(request, None)
