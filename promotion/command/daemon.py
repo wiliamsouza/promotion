@@ -21,6 +21,8 @@ from promotion.holiday import HolidayUseCase
 from promotion.postgresql.user import UserDataStore
 from promotion.settings.holiday import HolidayDataStore
 from promotion.user import UserUseCase
+from promotion.postgresql.order import OrderDataStore
+from promotion.order import OrderUseCase
 
 
 logger = logging.getLogger(__name__)
@@ -68,6 +70,9 @@ def _grpc():
 
     user_store = UserDataStore(session, tracer)
     user_case = UserUseCase(user_store, tracer)
+
+    order_store = OrderDataStore(session, tracer)
+    order_case = OrderUseCase(order_store, tracer)
 
     holiday_store = HolidayDataStore(settings.BLACK_FRIDAY_DATE, tracer)
     holiday_case = HolidayUseCase(holiday_store, tracer)
