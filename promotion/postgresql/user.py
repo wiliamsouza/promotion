@@ -45,6 +45,31 @@ class UserDataStore:
 
         return None
 
+    def query_by_email(self, email: str) -> Optional[UserEntity]:
+        """Query filtering user for the given email."""
+
+        with self.tracer.start_as_current_span(
+            "UserDataStore.query_by_email", kind=SERVER
+        ) as span:
+
+            span.set_attribute("is_user_found?", False)
+            span.set_attribute("user_email", str(email))
+            user = (
+                self.database.query(UserModel).filter(UserModel.email == email).first()
+            )
+            if user:
+                span.set_attribute("is_user_found?", True)
+                return UserEntity(
+                    user_id=user.id,
+                    birthday=user.birthday,
+                    identity=user.identity,
+                    email=user.email,
+                    name=user.name,
+                    password=user.password,
+                )
+
+        return None
+
     def create(self, user_id: uuid.UUID, birthday: datetime.date,
                identity: str, email: str, name: str, password: str) -> UserEntity:
         """Store an user in database."""

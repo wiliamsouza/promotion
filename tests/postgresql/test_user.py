@@ -25,6 +25,23 @@ def test_query_user_data_store(database, tracer):
     assert result.password == user.password
 
 
+def test_query_user_by_email(database, tracer):
+    email = 'jane@doe.com'
+    user = UserFactory.create(email=email)
+    assert database.query(User).one()
+    store = UserDataStore(database, tracer)
+
+    result = store.query_by_email(user.email)
+
+    assert str(result.user_id) == user.id
+    assert result.birthday == datetime.date.today()
+    assert result.identity == user.identity
+    assert result.email == user.email
+    assert result.name == user.name
+    # TODO: Change it to be a secure password hash
+    assert result.password == user.password
+
+
 def test_create_user_data_store(database, tracer):
     assert database.query(User).one_or_none() is None
     store = UserDataStore(database, tracer)
