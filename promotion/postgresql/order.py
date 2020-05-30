@@ -30,7 +30,9 @@ class OrderDataStore:
             span.set_attribute("is_order_found?", False)
             span.set_attribute("order_code", str(order_code))
             order = (
-                self.database.query(OrderModel).filter(OrderModel.code == order_code).first()
+                self.database.query(OrderModel)
+                .filter(OrderModel.code == order_code)
+                .first()
             )
             if order:
                 span.set_attribute("is_order_found?", True)
@@ -53,9 +55,7 @@ class OrderDataStore:
 
             entities = []
             span.set_attribute("status", str(status))
-            orders = (
-                self.database.query(OrderModel).filter(OrderModel.status == status)
-            )
+            orders = self.database.query(OrderModel).filter(OrderModel.status == status)
             for order in orders:
                 entities.append(
                     OrderEntity(
@@ -67,7 +67,6 @@ class OrderDataStore:
                     )
                 )
             return entities
-
 
     def query_all(self) -> List[OrderEntity]:
         """Query all orders."""
@@ -92,7 +91,14 @@ class OrderDataStore:
 
             return entities
 
-    def create(self, code: uuid.UUID, identity:str , amount_cents: int, status: str, date: datetime.date) -> OrderEntity:
+    def create(
+        self,
+        code: uuid.UUID,
+        identity: str,
+        amount_cents: int,
+        status: str,
+        date: datetime.date,
+    ) -> OrderEntity:
         """Store an order in database."""
         with self.tracer.start_as_current_span(
             "OrderDataStore.create", kind=SERVER

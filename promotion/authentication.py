@@ -16,8 +16,8 @@ from opentelemetry import trace
 
 SERVER = trace.SpanKind.SERVER
 
-class AuthenticationUseCase:
 
+class AuthenticationUseCase:
     def __init__(self, user_use_case, tracer) -> None:
         self.user = user_use_case
         self.tracer = tracer
@@ -31,7 +31,11 @@ class AuthenticationUseCase:
             user = self.user.retrieve_user_by_email(email)
             ph.verify(user.password, password)
             span.set_attribute("authenticated?", str(True))
-            key = jwk.JWK.from_pem(str(settings.RSA_PRIVATE_KEY.encode("utf8").decode('unicode-escape')).encode("utf8"))
+            key = jwk.JWK.from_pem(
+                str(
+                    settings.RSA_PRIVATE_KEY.encode("utf8").decode("unicode-escape")
+                ).encode("utf8")
+            )
             expiration_time = datetime.utcnow() + timedelta(
                 seconds=settings.ID_TOKEN_EXPIRE_SECONDS
             )

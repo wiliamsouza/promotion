@@ -57,12 +57,16 @@ class OrderUseCase:
 
     def list_approved_orders(self):
         """List approved orders."""
-        with self.tracer.start_as_current_span("OrderUseCase.list_approved_orders", kind=SERVER):
+        with self.tracer.start_as_current_span(
+            "OrderUseCase.list_approved_orders", kind=SERVER
+        ):
             return self.store.query_status("approved")
 
     def list_orders_with_cashback(self):
         """List orders with cashback."""
-        with self.tracer.start_as_current_span("OrderUseCase.list_orders_with_cashback", kind=SERVER):
+        with self.tracer.start_as_current_span(
+            "OrderUseCase.list_orders_with_cashback", kind=SERVER
+        ):
             orders = []
             entities = self.store.query_all()
             for entity in entities:
@@ -71,4 +75,3 @@ class OrderUseCase:
                 entity.cashback_percentage = percentage
                 orders.append(entity)
             return orders
-

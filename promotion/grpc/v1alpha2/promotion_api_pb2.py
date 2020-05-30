@@ -6,704 +6,1072 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
 from google.type import date_pb2 as google_dot_type_dot_date__pb2
-from promotion.grpc.v1alpha2 import discount_pb2 as promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2
+from promotion.grpc.v1alpha2 import (
+    discount_pb2 as promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2,
+)
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
-  name='promotion/grpc/v1alpha2/promotion_api.proto',
-  package='promotion.grpc.v1alpha2',
-  syntax='proto3',
-  serialized_options=b'Z\010v1alpha2',
-  serialized_pb=b'\n+promotion/grpc/v1alpha2/promotion_api.proto\x12\x17promotion.grpc.v1alpha2\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha2/discount.proto\"6\n\x13\x41uthenticateRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"(\n\x14\x41uthenticateResponse\x12\x10\n\x08id_token\x18\x01 \x01(\t\"\x12\n\x10ListOrderRequest\"C\n\x11ListOrderResponse\x12.\n\x06orders\x18\x01 \x03(\x0b\x32\x1e.promotion.grpc.v1alpha2.Order\"\xaa\x01\n\x05Order\x12\x14\n\x0c\x61mount_cents\x18\x01 \x01(\x05\x12\x1d\n\x15\x61mount_cashback_cents\x18\x02 \x01(\x05\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x1b\n\x13\x63\x61shback_percentage\x18\x04 \x01(\x02\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x06 \x01(\t\x12\x0e\n\x06status\x18\x07 \x01(\t\"\x83\x01\n\x1a\x43reateOrderRequestResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x10\n\x08identity\x18\x02 \x01(\t\x12\x14\n\x0c\x61mount_cents\x18\x03 \x01(\x05\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\"\x8f\x01\n\x11\x43reateUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\x12\x10\n\x08password\x18\x06 \x01(\t\"~\n\x12\x43reateUserResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha2.Discount\"\x18\n\x16RetrieveBalanceRequest\"*\n\x17RetrieveBalanceResponse\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\x32\xca\x05\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha2.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha2.RetrievePromotionResponse\"\x00\x12g\n\nCreateUser\x12*.promotion.grpc.v1alpha2.CreateUserRequest\x1a+.promotion.grpc.v1alpha2.CreateUserResponse\"\x00\x12y\n\x0b\x43reateOrder\x12\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\x1a\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\"\x00\x12q\n\x16ListOrdersWithCashback\x12).promotion.grpc.v1alpha2.ListOrderRequest\x1a*.promotion.grpc.v1alpha2.ListOrderResponse\"\x00\x12v\n\x0fRetrieveBalance\x12/.promotion.grpc.v1alpha2.RetrieveBalanceRequest\x1a\x30.promotion.grpc.v1alpha2.RetrieveBalanceResponse\"\x00\x12m\n\x0c\x41uthenticate\x12,.promotion.grpc.v1alpha2.AuthenticateRequest\x1a-.promotion.grpc.v1alpha2.AuthenticateResponse\"\x00\x42\nZ\x08v1alpha2b\x06proto3'
-  ,
-  dependencies=[google_dot_type_dot_date__pb2.DESCRIPTOR,promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2.DESCRIPTOR,])
-
-
+    name="promotion/grpc/v1alpha2/promotion_api.proto",
+    package="promotion.grpc.v1alpha2",
+    syntax="proto3",
+    serialized_options=b"Z\010v1alpha2",
+    serialized_pb=b'\n+promotion/grpc/v1alpha2/promotion_api.proto\x12\x17promotion.grpc.v1alpha2\x1a\x16google/type/date.proto\x1a&promotion/grpc/v1alpha2/discount.proto"6\n\x13\x41uthenticateRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t"(\n\x14\x41uthenticateResponse\x12\x10\n\x08id_token\x18\x01 \x01(\t"\x12\n\x10ListOrderRequest"C\n\x11ListOrderResponse\x12.\n\x06orders\x18\x01 \x03(\x0b\x32\x1e.promotion.grpc.v1alpha2.Order"\xaa\x01\n\x05Order\x12\x14\n\x0c\x61mount_cents\x18\x01 \x01(\x05\x12\x1d\n\x15\x61mount_cashback_cents\x18\x02 \x01(\x05\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\x12\x1b\n\x13\x63\x61shback_percentage\x18\x04 \x01(\x02\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x06 \x01(\t\x12\x0e\n\x06status\x18\x07 \x01(\t"\x83\x01\n\x1a\x43reateOrderRequestResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x10\n\x08identity\x18\x02 \x01(\t\x12\x14\n\x0c\x61mount_cents\x18\x03 \x01(\x05\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x1f\n\x04\x64\x61te\x18\x05 \x01(\x0b\x32\x11.google.type.Date"\x8f\x01\n\x11\x43reateUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t\x12\x10\n\x08password\x18\x06 \x01(\t"~\n\x12\x43reateUserResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12(\n\rdate_of_birth\x18\x02 \x01(\x0b\x32\x11.google.type.Date\x12\x10\n\x08identity\x18\x03 \x01(\t\x12\r\n\x05\x65mail\x18\x04 \x01(\t\x12\x0c\n\x04name\x18\x05 \x01(\t"?\n\x18RetrievePromotionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t"Q\n\x19RetrievePromotionResponse\x12\x34\n\tdiscounts\x18\x01 \x03(\x0b\x32!.promotion.grpc.v1alpha2.Discount"\x18\n\x16RetrieveBalanceRequest"*\n\x17RetrieveBalanceResponse\x12\x0f\n\x07\x62\x61lance\x18\x01 \x01(\x05\x32\xca\x05\n\x0cPromotionAPI\x12|\n\x11RetrievePromotion\x12\x31.promotion.grpc.v1alpha2.RetrievePromotionRequest\x1a\x32.promotion.grpc.v1alpha2.RetrievePromotionResponse"\x00\x12g\n\nCreateUser\x12*.promotion.grpc.v1alpha2.CreateUserRequest\x1a+.promotion.grpc.v1alpha2.CreateUserResponse"\x00\x12y\n\x0b\x43reateOrder\x12\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse\x1a\x33.promotion.grpc.v1alpha2.CreateOrderRequestResponse"\x00\x12q\n\x16ListOrdersWithCashback\x12).promotion.grpc.v1alpha2.ListOrderRequest\x1a*.promotion.grpc.v1alpha2.ListOrderResponse"\x00\x12v\n\x0fRetrieveBalance\x12/.promotion.grpc.v1alpha2.RetrieveBalanceRequest\x1a\x30.promotion.grpc.v1alpha2.RetrieveBalanceResponse"\x00\x12m\n\x0c\x41uthenticate\x12,.promotion.grpc.v1alpha2.AuthenticateRequest\x1a-.promotion.grpc.v1alpha2.AuthenticateResponse"\x00\x42\nZ\x08v1alpha2b\x06proto3',
+    dependencies=[
+        google_dot_type_dot_date__pb2.DESCRIPTOR,
+        promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2.DESCRIPTOR,
+    ],
+)
 
 
 _AUTHENTICATEREQUEST = _descriptor.Descriptor(
-  name='AuthenticateRequest',
-  full_name='promotion.grpc.v1alpha2.AuthenticateRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='email', full_name='promotion.grpc.v1alpha2.AuthenticateRequest.email', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='password', full_name='promotion.grpc.v1alpha2.AuthenticateRequest.password', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=136,
-  serialized_end=190,
+    name="AuthenticateRequest",
+    full_name="promotion.grpc.v1alpha2.AuthenticateRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="email",
+            full_name="promotion.grpc.v1alpha2.AuthenticateRequest.email",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="password",
+            full_name="promotion.grpc.v1alpha2.AuthenticateRequest.password",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=136,
+    serialized_end=190,
 )
 
 
 _AUTHENTICATERESPONSE = _descriptor.Descriptor(
-  name='AuthenticateResponse',
-  full_name='promotion.grpc.v1alpha2.AuthenticateResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='id_token', full_name='promotion.grpc.v1alpha2.AuthenticateResponse.id_token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=192,
-  serialized_end=232,
+    name="AuthenticateResponse",
+    full_name="promotion.grpc.v1alpha2.AuthenticateResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="id_token",
+            full_name="promotion.grpc.v1alpha2.AuthenticateResponse.id_token",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=192,
+    serialized_end=232,
 )
 
 
 _LISTORDERREQUEST = _descriptor.Descriptor(
-  name='ListOrderRequest',
-  full_name='promotion.grpc.v1alpha2.ListOrderRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=234,
-  serialized_end=252,
+    name="ListOrderRequest",
+    full_name="promotion.grpc.v1alpha2.ListOrderRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=234,
+    serialized_end=252,
 )
 
 
 _LISTORDERRESPONSE = _descriptor.Descriptor(
-  name='ListOrderResponse',
-  full_name='promotion.grpc.v1alpha2.ListOrderResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='orders', full_name='promotion.grpc.v1alpha2.ListOrderResponse.orders', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=254,
-  serialized_end=321,
+    name="ListOrderResponse",
+    full_name="promotion.grpc.v1alpha2.ListOrderResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="orders",
+            full_name="promotion.grpc.v1alpha2.ListOrderResponse.orders",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=254,
+    serialized_end=321,
 )
 
 
 _ORDER = _descriptor.Descriptor(
-  name='Order',
-  full_name='promotion.grpc.v1alpha2.Order',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='amount_cents', full_name='promotion.grpc.v1alpha2.Order.amount_cents', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='amount_cashback_cents', full_name='promotion.grpc.v1alpha2.Order.amount_cashback_cents', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='code', full_name='promotion.grpc.v1alpha2.Order.code', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='cashback_percentage', full_name='promotion.grpc.v1alpha2.Order.cashback_percentage', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='date', full_name='promotion.grpc.v1alpha2.Order.date', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='promotion.grpc.v1alpha2.Order.identity', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='status', full_name='promotion.grpc.v1alpha2.Order.status', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=324,
-  serialized_end=494,
+    name="Order",
+    full_name="promotion.grpc.v1alpha2.Order",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="amount_cents",
+            full_name="promotion.grpc.v1alpha2.Order.amount_cents",
+            index=0,
+            number=1,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="amount_cashback_cents",
+            full_name="promotion.grpc.v1alpha2.Order.amount_cashback_cents",
+            index=1,
+            number=2,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="code",
+            full_name="promotion.grpc.v1alpha2.Order.code",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cashback_percentage",
+            full_name="promotion.grpc.v1alpha2.Order.cashback_percentage",
+            index=3,
+            number=4,
+            type=2,
+            cpp_type=6,
+            label=1,
+            has_default_value=False,
+            default_value=float(0),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="date",
+            full_name="promotion.grpc.v1alpha2.Order.date",
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="promotion.grpc.v1alpha2.Order.identity",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="status",
+            full_name="promotion.grpc.v1alpha2.Order.status",
+            index=6,
+            number=7,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=324,
+    serialized_end=494,
 )
 
 
 _CREATEORDERREQUESTRESPONSE = _descriptor.Descriptor(
-  name='CreateOrderRequestResponse',
-  full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='code', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.code', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.identity', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='amount_cents', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.amount_cents', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='status', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.status', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='date', full_name='promotion.grpc.v1alpha2.CreateOrderRequestResponse.date', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=497,
-  serialized_end=628,
+    name="CreateOrderRequestResponse",
+    full_name="promotion.grpc.v1alpha2.CreateOrderRequestResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="code",
+            full_name="promotion.grpc.v1alpha2.CreateOrderRequestResponse.code",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="promotion.grpc.v1alpha2.CreateOrderRequestResponse.identity",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="amount_cents",
+            full_name="promotion.grpc.v1alpha2.CreateOrderRequestResponse.amount_cents",
+            index=2,
+            number=3,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="status",
+            full_name="promotion.grpc.v1alpha2.CreateOrderRequestResponse.status",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="date",
+            full_name="promotion.grpc.v1alpha2.CreateOrderRequestResponse.date",
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=497,
+    serialized_end=628,
 )
 
 
 _CREATEUSERREQUEST = _descriptor.Descriptor(
-  name='CreateUserRequest',
-  full_name='promotion.grpc.v1alpha2.CreateUserRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user_id', full_name='promotion.grpc.v1alpha2.CreateUserRequest.user_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='date_of_birth', full_name='promotion.grpc.v1alpha2.CreateUserRequest.date_of_birth', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='promotion.grpc.v1alpha2.CreateUserRequest.identity', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='email', full_name='promotion.grpc.v1alpha2.CreateUserRequest.email', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='promotion.grpc.v1alpha2.CreateUserRequest.name', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='password', full_name='promotion.grpc.v1alpha2.CreateUserRequest.password', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=631,
-  serialized_end=774,
+    name="CreateUserRequest",
+    full_name="promotion.grpc.v1alpha2.CreateUserRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="user_id",
+            full_name="promotion.grpc.v1alpha2.CreateUserRequest.user_id",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="date_of_birth",
+            full_name="promotion.grpc.v1alpha2.CreateUserRequest.date_of_birth",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="promotion.grpc.v1alpha2.CreateUserRequest.identity",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="email",
+            full_name="promotion.grpc.v1alpha2.CreateUserRequest.email",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="promotion.grpc.v1alpha2.CreateUserRequest.name",
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="password",
+            full_name="promotion.grpc.v1alpha2.CreateUserRequest.password",
+            index=5,
+            number=6,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=631,
+    serialized_end=774,
 )
 
 
 _CREATEUSERRESPONSE = _descriptor.Descriptor(
-  name='CreateUserResponse',
-  full_name='promotion.grpc.v1alpha2.CreateUserResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user_id', full_name='promotion.grpc.v1alpha2.CreateUserResponse.user_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='date_of_birth', full_name='promotion.grpc.v1alpha2.CreateUserResponse.date_of_birth', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='promotion.grpc.v1alpha2.CreateUserResponse.identity', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='email', full_name='promotion.grpc.v1alpha2.CreateUserResponse.email', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='promotion.grpc.v1alpha2.CreateUserResponse.name', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=776,
-  serialized_end=902,
+    name="CreateUserResponse",
+    full_name="promotion.grpc.v1alpha2.CreateUserResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="user_id",
+            full_name="promotion.grpc.v1alpha2.CreateUserResponse.user_id",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="date_of_birth",
+            full_name="promotion.grpc.v1alpha2.CreateUserResponse.date_of_birth",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="promotion.grpc.v1alpha2.CreateUserResponse.identity",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="email",
+            full_name="promotion.grpc.v1alpha2.CreateUserResponse.email",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="promotion.grpc.v1alpha2.CreateUserResponse.name",
+            index=4,
+            number=5,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=776,
+    serialized_end=902,
 )
 
 
 _RETRIEVEPROMOTIONREQUEST = _descriptor.Descriptor(
-  name='RetrievePromotionRequest',
-  full_name='promotion.grpc.v1alpha2.RetrievePromotionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user_id', full_name='promotion.grpc.v1alpha2.RetrievePromotionRequest.user_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='product_id', full_name='promotion.grpc.v1alpha2.RetrievePromotionRequest.product_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=904,
-  serialized_end=967,
+    name="RetrievePromotionRequest",
+    full_name="promotion.grpc.v1alpha2.RetrievePromotionRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="user_id",
+            full_name="promotion.grpc.v1alpha2.RetrievePromotionRequest.user_id",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="product_id",
+            full_name="promotion.grpc.v1alpha2.RetrievePromotionRequest.product_id",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=904,
+    serialized_end=967,
 )
 
 
 _RETRIEVEPROMOTIONRESPONSE = _descriptor.Descriptor(
-  name='RetrievePromotionResponse',
-  full_name='promotion.grpc.v1alpha2.RetrievePromotionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='discounts', full_name='promotion.grpc.v1alpha2.RetrievePromotionResponse.discounts', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=969,
-  serialized_end=1050,
+    name="RetrievePromotionResponse",
+    full_name="promotion.grpc.v1alpha2.RetrievePromotionResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="discounts",
+            full_name="promotion.grpc.v1alpha2.RetrievePromotionResponse.discounts",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=969,
+    serialized_end=1050,
 )
 
 
 _RETRIEVEBALANCEREQUEST = _descriptor.Descriptor(
-  name='RetrieveBalanceRequest',
-  full_name='promotion.grpc.v1alpha2.RetrieveBalanceRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1052,
-  serialized_end=1076,
+    name="RetrieveBalanceRequest",
+    full_name="promotion.grpc.v1alpha2.RetrieveBalanceRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1052,
+    serialized_end=1076,
 )
 
 
 _RETRIEVEBALANCERESPONSE = _descriptor.Descriptor(
-  name='RetrieveBalanceResponse',
-  full_name='promotion.grpc.v1alpha2.RetrieveBalanceResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='balance', full_name='promotion.grpc.v1alpha2.RetrieveBalanceResponse.balance', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1078,
-  serialized_end=1120,
+    name="RetrieveBalanceResponse",
+    full_name="promotion.grpc.v1alpha2.RetrieveBalanceResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="balance",
+            full_name="promotion.grpc.v1alpha2.RetrieveBalanceResponse.balance",
+            index=0,
+            number=1,
+            type=5,
+            cpp_type=1,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1078,
+    serialized_end=1120,
 )
 
-_LISTORDERRESPONSE.fields_by_name['orders'].message_type = _ORDER
-_ORDER.fields_by_name['date'].message_type = google_dot_type_dot_date__pb2._DATE
-_CREATEORDERREQUESTRESPONSE.fields_by_name['date'].message_type = google_dot_type_dot_date__pb2._DATE
-_CREATEUSERREQUEST.fields_by_name['date_of_birth'].message_type = google_dot_type_dot_date__pb2._DATE
-_CREATEUSERRESPONSE.fields_by_name['date_of_birth'].message_type = google_dot_type_dot_date__pb2._DATE
-_RETRIEVEPROMOTIONRESPONSE.fields_by_name['discounts'].message_type = promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2._DISCOUNT
-DESCRIPTOR.message_types_by_name['AuthenticateRequest'] = _AUTHENTICATEREQUEST
-DESCRIPTOR.message_types_by_name['AuthenticateResponse'] = _AUTHENTICATERESPONSE
-DESCRIPTOR.message_types_by_name['ListOrderRequest'] = _LISTORDERREQUEST
-DESCRIPTOR.message_types_by_name['ListOrderResponse'] = _LISTORDERRESPONSE
-DESCRIPTOR.message_types_by_name['Order'] = _ORDER
-DESCRIPTOR.message_types_by_name['CreateOrderRequestResponse'] = _CREATEORDERREQUESTRESPONSE
-DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
-DESCRIPTOR.message_types_by_name['CreateUserResponse'] = _CREATEUSERRESPONSE
-DESCRIPTOR.message_types_by_name['RetrievePromotionRequest'] = _RETRIEVEPROMOTIONREQUEST
-DESCRIPTOR.message_types_by_name['RetrievePromotionResponse'] = _RETRIEVEPROMOTIONRESPONSE
-DESCRIPTOR.message_types_by_name['RetrieveBalanceRequest'] = _RETRIEVEBALANCEREQUEST
-DESCRIPTOR.message_types_by_name['RetrieveBalanceResponse'] = _RETRIEVEBALANCERESPONSE
+_LISTORDERRESPONSE.fields_by_name["orders"].message_type = _ORDER
+_ORDER.fields_by_name["date"].message_type = google_dot_type_dot_date__pb2._DATE
+_CREATEORDERREQUESTRESPONSE.fields_by_name[
+    "date"
+].message_type = google_dot_type_dot_date__pb2._DATE
+_CREATEUSERREQUEST.fields_by_name[
+    "date_of_birth"
+].message_type = google_dot_type_dot_date__pb2._DATE
+_CREATEUSERRESPONSE.fields_by_name[
+    "date_of_birth"
+].message_type = google_dot_type_dot_date__pb2._DATE
+_RETRIEVEPROMOTIONRESPONSE.fields_by_name[
+    "discounts"
+].message_type = promotion_dot_grpc_dot_v1alpha2_dot_discount__pb2._DISCOUNT
+DESCRIPTOR.message_types_by_name["AuthenticateRequest"] = _AUTHENTICATEREQUEST
+DESCRIPTOR.message_types_by_name["AuthenticateResponse"] = _AUTHENTICATERESPONSE
+DESCRIPTOR.message_types_by_name["ListOrderRequest"] = _LISTORDERREQUEST
+DESCRIPTOR.message_types_by_name["ListOrderResponse"] = _LISTORDERRESPONSE
+DESCRIPTOR.message_types_by_name["Order"] = _ORDER
+DESCRIPTOR.message_types_by_name[
+    "CreateOrderRequestResponse"
+] = _CREATEORDERREQUESTRESPONSE
+DESCRIPTOR.message_types_by_name["CreateUserRequest"] = _CREATEUSERREQUEST
+DESCRIPTOR.message_types_by_name["CreateUserResponse"] = _CREATEUSERRESPONSE
+DESCRIPTOR.message_types_by_name["RetrievePromotionRequest"] = _RETRIEVEPROMOTIONREQUEST
+DESCRIPTOR.message_types_by_name[
+    "RetrievePromotionResponse"
+] = _RETRIEVEPROMOTIONRESPONSE
+DESCRIPTOR.message_types_by_name["RetrieveBalanceRequest"] = _RETRIEVEBALANCEREQUEST
+DESCRIPTOR.message_types_by_name["RetrieveBalanceResponse"] = _RETRIEVEBALANCERESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-AuthenticateRequest = _reflection.GeneratedProtocolMessageType('AuthenticateRequest', (_message.Message,), {
-  'DESCRIPTOR' : _AUTHENTICATEREQUEST,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.AuthenticateRequest)
-  })
+AuthenticateRequest = _reflection.GeneratedProtocolMessageType(
+    "AuthenticateRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _AUTHENTICATEREQUEST,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.AuthenticateRequest)
+    },
+)
 _sym_db.RegisterMessage(AuthenticateRequest)
 
-AuthenticateResponse = _reflection.GeneratedProtocolMessageType('AuthenticateResponse', (_message.Message,), {
-  'DESCRIPTOR' : _AUTHENTICATERESPONSE,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.AuthenticateResponse)
-  })
+AuthenticateResponse = _reflection.GeneratedProtocolMessageType(
+    "AuthenticateResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _AUTHENTICATERESPONSE,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.AuthenticateResponse)
+    },
+)
 _sym_db.RegisterMessage(AuthenticateResponse)
 
-ListOrderRequest = _reflection.GeneratedProtocolMessageType('ListOrderRequest', (_message.Message,), {
-  'DESCRIPTOR' : _LISTORDERREQUEST,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.ListOrderRequest)
-  })
+ListOrderRequest = _reflection.GeneratedProtocolMessageType(
+    "ListOrderRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LISTORDERREQUEST,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.ListOrderRequest)
+    },
+)
 _sym_db.RegisterMessage(ListOrderRequest)
 
-ListOrderResponse = _reflection.GeneratedProtocolMessageType('ListOrderResponse', (_message.Message,), {
-  'DESCRIPTOR' : _LISTORDERRESPONSE,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.ListOrderResponse)
-  })
+ListOrderResponse = _reflection.GeneratedProtocolMessageType(
+    "ListOrderResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LISTORDERRESPONSE,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.ListOrderResponse)
+    },
+)
 _sym_db.RegisterMessage(ListOrderResponse)
 
-Order = _reflection.GeneratedProtocolMessageType('Order', (_message.Message,), {
-  'DESCRIPTOR' : _ORDER,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.Order)
-  })
+Order = _reflection.GeneratedProtocolMessageType(
+    "Order",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _ORDER,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.Order)
+    },
+)
 _sym_db.RegisterMessage(Order)
 
-CreateOrderRequestResponse = _reflection.GeneratedProtocolMessageType('CreateOrderRequestResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEORDERREQUESTRESPONSE,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.CreateOrderRequestResponse)
-  })
+CreateOrderRequestResponse = _reflection.GeneratedProtocolMessageType(
+    "CreateOrderRequestResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CREATEORDERREQUESTRESPONSE,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.CreateOrderRequestResponse)
+    },
+)
 _sym_db.RegisterMessage(CreateOrderRequestResponse)
 
-CreateUserRequest = _reflection.GeneratedProtocolMessageType('CreateUserRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEUSERREQUEST,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.CreateUserRequest)
-  })
+CreateUserRequest = _reflection.GeneratedProtocolMessageType(
+    "CreateUserRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CREATEUSERREQUEST,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.CreateUserRequest)
+    },
+)
 _sym_db.RegisterMessage(CreateUserRequest)
 
-CreateUserResponse = _reflection.GeneratedProtocolMessageType('CreateUserResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEUSERRESPONSE,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.CreateUserResponse)
-  })
+CreateUserResponse = _reflection.GeneratedProtocolMessageType(
+    "CreateUserResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CREATEUSERRESPONSE,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.CreateUserResponse)
+    },
+)
 _sym_db.RegisterMessage(CreateUserResponse)
 
-RetrievePromotionRequest = _reflection.GeneratedProtocolMessageType('RetrievePromotionRequest', (_message.Message,), {
-  'DESCRIPTOR' : _RETRIEVEPROMOTIONREQUEST,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrievePromotionRequest)
-  })
+RetrievePromotionRequest = _reflection.GeneratedProtocolMessageType(
+    "RetrievePromotionRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _RETRIEVEPROMOTIONREQUEST,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrievePromotionRequest)
+    },
+)
 _sym_db.RegisterMessage(RetrievePromotionRequest)
 
-RetrievePromotionResponse = _reflection.GeneratedProtocolMessageType('RetrievePromotionResponse', (_message.Message,), {
-  'DESCRIPTOR' : _RETRIEVEPROMOTIONRESPONSE,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrievePromotionResponse)
-  })
+RetrievePromotionResponse = _reflection.GeneratedProtocolMessageType(
+    "RetrievePromotionResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _RETRIEVEPROMOTIONRESPONSE,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrievePromotionResponse)
+    },
+)
 _sym_db.RegisterMessage(RetrievePromotionResponse)
 
-RetrieveBalanceRequest = _reflection.GeneratedProtocolMessageType('RetrieveBalanceRequest', (_message.Message,), {
-  'DESCRIPTOR' : _RETRIEVEBALANCEREQUEST,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrieveBalanceRequest)
-  })
+RetrieveBalanceRequest = _reflection.GeneratedProtocolMessageType(
+    "RetrieveBalanceRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _RETRIEVEBALANCEREQUEST,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrieveBalanceRequest)
+    },
+)
 _sym_db.RegisterMessage(RetrieveBalanceRequest)
 
-RetrieveBalanceResponse = _reflection.GeneratedProtocolMessageType('RetrieveBalanceResponse', (_message.Message,), {
-  'DESCRIPTOR' : _RETRIEVEBALANCERESPONSE,
-  '__module__' : 'promotion.grpc.v1alpha2.promotion_api_pb2'
-  # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrieveBalanceResponse)
-  })
+RetrieveBalanceResponse = _reflection.GeneratedProtocolMessageType(
+    "RetrieveBalanceResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _RETRIEVEBALANCERESPONSE,
+        "__module__": "promotion.grpc.v1alpha2.promotion_api_pb2"
+        # @@protoc_insertion_point(class_scope:promotion.grpc.v1alpha2.RetrieveBalanceResponse)
+    },
+)
 _sym_db.RegisterMessage(RetrieveBalanceResponse)
 
 
 DESCRIPTOR._options = None
 
 _PROMOTIONAPI = _descriptor.ServiceDescriptor(
-  name='PromotionAPI',
-  full_name='promotion.grpc.v1alpha2.PromotionAPI',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=None,
-  serialized_start=1123,
-  serialized_end=1837,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='RetrievePromotion',
-    full_name='promotion.grpc.v1alpha2.PromotionAPI.RetrievePromotion',
+    name="PromotionAPI",
+    full_name="promotion.grpc.v1alpha2.PromotionAPI",
+    file=DESCRIPTOR,
     index=0,
-    containing_service=None,
-    input_type=_RETRIEVEPROMOTIONREQUEST,
-    output_type=_RETRIEVEPROMOTIONRESPONSE,
     serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='CreateUser',
-    full_name='promotion.grpc.v1alpha2.PromotionAPI.CreateUser',
-    index=1,
-    containing_service=None,
-    input_type=_CREATEUSERREQUEST,
-    output_type=_CREATEUSERRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='CreateOrder',
-    full_name='promotion.grpc.v1alpha2.PromotionAPI.CreateOrder',
-    index=2,
-    containing_service=None,
-    input_type=_CREATEORDERREQUESTRESPONSE,
-    output_type=_CREATEORDERREQUESTRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='ListOrdersWithCashback',
-    full_name='promotion.grpc.v1alpha2.PromotionAPI.ListOrdersWithCashback',
-    index=3,
-    containing_service=None,
-    input_type=_LISTORDERREQUEST,
-    output_type=_LISTORDERRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RetrieveBalance',
-    full_name='promotion.grpc.v1alpha2.PromotionAPI.RetrieveBalance',
-    index=4,
-    containing_service=None,
-    input_type=_RETRIEVEBALANCEREQUEST,
-    output_type=_RETRIEVEBALANCERESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Authenticate',
-    full_name='promotion.grpc.v1alpha2.PromotionAPI.Authenticate',
-    index=5,
-    containing_service=None,
-    input_type=_AUTHENTICATEREQUEST,
-    output_type=_AUTHENTICATERESPONSE,
-    serialized_options=None,
-  ),
-])
+    serialized_start=1123,
+    serialized_end=1837,
+    methods=[
+        _descriptor.MethodDescriptor(
+            name="RetrievePromotion",
+            full_name="promotion.grpc.v1alpha2.PromotionAPI.RetrievePromotion",
+            index=0,
+            containing_service=None,
+            input_type=_RETRIEVEPROMOTIONREQUEST,
+            output_type=_RETRIEVEPROMOTIONRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="CreateUser",
+            full_name="promotion.grpc.v1alpha2.PromotionAPI.CreateUser",
+            index=1,
+            containing_service=None,
+            input_type=_CREATEUSERREQUEST,
+            output_type=_CREATEUSERRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="CreateOrder",
+            full_name="promotion.grpc.v1alpha2.PromotionAPI.CreateOrder",
+            index=2,
+            containing_service=None,
+            input_type=_CREATEORDERREQUESTRESPONSE,
+            output_type=_CREATEORDERREQUESTRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="ListOrdersWithCashback",
+            full_name="promotion.grpc.v1alpha2.PromotionAPI.ListOrdersWithCashback",
+            index=3,
+            containing_service=None,
+            input_type=_LISTORDERREQUEST,
+            output_type=_LISTORDERRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="RetrieveBalance",
+            full_name="promotion.grpc.v1alpha2.PromotionAPI.RetrieveBalance",
+            index=4,
+            containing_service=None,
+            input_type=_RETRIEVEBALANCEREQUEST,
+            output_type=_RETRIEVEBALANCERESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="Authenticate",
+            full_name="promotion.grpc.v1alpha2.PromotionAPI.Authenticate",
+            index=5,
+            containing_service=None,
+            input_type=_AUTHENTICATEREQUEST,
+            output_type=_AUTHENTICATERESPONSE,
+            serialized_options=None,
+        ),
+    ],
+)
 _sym_db.RegisterServiceDescriptor(_PROMOTIONAPI)
 
-DESCRIPTOR.services_by_name['PromotionAPI'] = _PROMOTIONAPI
+DESCRIPTOR.services_by_name["PromotionAPI"] = _PROMOTIONAPI
 
 # @@protoc_insertion_point(module_scope)

@@ -25,10 +25,15 @@ SERVER = trace.SpanKind.SERVER
 class PromotionServicer(PromotionAPIServicer):
     """Implements gRPC product API server"""
 
-    def __init__(self, promotion_use_case: Promotion,
-                 user_use_case: UserUseCase, order_use_case: OrderUseCase,
-                 balance_use_case, authentication_use_case, tracer
-                 ):
+    def __init__(
+        self,
+        promotion_use_case: Promotion,
+        user_use_case: UserUseCase,
+        order_use_case: OrderUseCase,
+        balance_use_case,
+        authentication_use_case,
+        tracer,
+    ):
         self.balance_use_case = balance_use_case
         self.promotion_use_case = promotion_use_case
         self.user_use_case = user_use_case
@@ -65,7 +70,7 @@ class PromotionServicer(PromotionAPIServicer):
                 request.identity,
                 request.email,
                 request.name,
-                request.password
+                request.password,
             )
 
             birthday = Date(
@@ -87,9 +92,7 @@ class PromotionServicer(PromotionAPIServicer):
             "PromotionServicer.CreateOrder", kind=SERVER
         ):
             date = datetime.date(
-                request.date.year,
-                request.date.month,
-                request.date.day,
+                request.date.year, request.date.month, request.date.day,
             )
 
             order = self.order_use_case.place_order(
@@ -101,9 +104,7 @@ class PromotionServicer(PromotionAPIServicer):
             )
 
             order_date = Date(
-                year=order.date.year,
-                month=order.date.month,
-                day=order.date.day,
+                year=order.date.year, month=order.date.month, day=order.date.day,
             )
             return CreateOrderRequestResponse(
                 code=str(order.code),
@@ -121,9 +122,7 @@ class PromotionServicer(PromotionAPIServicer):
             orders = self.order_use_case.list_orders_with_cashback()
             for order in orders:
                 order_date = Date(
-                    year=order.date.year,
-                    month=order.date.month,
-                    day=order.date.day,
+                    year=order.date.year, month=order.date.month, day=order.date.day,
                 )
                 cashbacks.append(
                     Order(
@@ -151,5 +150,7 @@ class PromotionServicer(PromotionAPIServicer):
             "PromotionServicer.Authenticate", kind=SERVER
         ):
 
-            id_token = self.authentication_use_case.authenticate(request.email, request.password)
+            id_token = self.authentication_use_case.authenticate(
+                request.email, request.password
+            )
             return AuthenticateResponse(id_token=id_token)
