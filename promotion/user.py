@@ -60,3 +60,8 @@ class UserUseCase:
             ph = PasswordHasher()
             password_hash = ph.hash(password)
             return self.store.create(user_id, birthday, identity, email, name, password_hash)
+
+    def retrieve_user_by_email(self, email):
+        """List user by the given email."""
+        with self.tracer.start_as_current_span("UserUseCase.list_user_by_email", kind=SERVER):
+            return self.store.query_by_email(email)
