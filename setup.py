@@ -18,6 +18,8 @@ setup(
         "opentelemetry-api==0.4a1",
         "opentelemetry-ext-jaeger==0.4a1",
         "opentelemetry-sdk==0.4a1",
+        "argon2-cffi==20.1.0",
+        "jwcrypto==0.7",
     ],
     extras_require={
         "dev": ["pylint", "mypy", "ipdb", "bandit"],
