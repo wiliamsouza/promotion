@@ -27,8 +27,8 @@ class OrderUseCase:
         with self.tracer.start_as_current_span(
             "OrderUseCase.discount", kind=SERVER
         ) as span:
-            span.set_attribute("given_discount_percentage", str(discount.percentage))
             discount = Discount(percentage=Decimal(0))
+            span.set_attribute("given_discount_percentage", str(discount.percentage))
             return discount
 
     def place_order(self, code, identity, amount, date, status="validating"):
