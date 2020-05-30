@@ -5,6 +5,8 @@ from unittest import mock
 
 from promotion.user import UserUseCase
 
+from .factories import UserFactory
+
 
 @mock.patch("promotion.postgresql.user.UserDataStore")
 def test_birthday_is_today(store_mock, tracer):
@@ -50,3 +52,15 @@ def test_birthday_is_not_today(store_mock, tracer):
     result = case.discount(user.id)
 
     assert result.percentage == 0
+
+
+@mock.patch("promotion.postgresql.user.UserDataStore")
+def test_create_user_should_hash_password(store_mock, tracer):
+    user = UserFactory.build()
+    store_mock.create.return_value = user
+
+    case = UserUseCase(store_mock, tracer)
+
+    result = case.create(user.id, user.birthday, user.identity, user.email, user.name, user.password)
+
+    assert 'swordfish' not in store_mock.create.call_args

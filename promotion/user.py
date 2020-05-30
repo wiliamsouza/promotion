@@ -4,6 +4,8 @@ import logging
 import uuid
 from decimal import Decimal
 
+from argon2 import PasswordHasher
+
 from opentelemetry import trace
 
 from promotion import settings
@@ -55,4 +57,6 @@ class UserUseCase:
     def create(self, user_id, birthday, identity, email, name, password):
         """Create an user."""
         with self.tracer.start_as_current_span("UserUseCase.create", kind=SERVER):
-            return self.store.create(user_id, birthday, identity, email, name, password)
+            ph = PasswordHasher()
+            password_hash = ph.hash(password)
+            return self.store.create(user_id, birthday, identity, email, name, password_hash)
