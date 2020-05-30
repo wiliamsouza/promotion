@@ -24,6 +24,7 @@ from promotion.user import UserUseCase
 from promotion.postgresql.order import OrderDataStore
 from promotion.order import OrderUseCase
 from promotion.balance import BalanceUseCase, BalanceClient
+from promotion.authentication import AuthenticationUseCase
 
 
 logger = logging.getLogger(__name__)
@@ -81,9 +82,13 @@ def _grpc():
     holiday_store = HolidayDataStore(settings.BLACK_FRIDAY_DATE, tracer)
     holiday_case = HolidayUseCase(holiday_store, tracer)
 
+    authentication_case = AuthenticationUseCase(user_case, tracer)
+
     case = PromotionUseCase(discounts=[holiday_case, user_case], tracer=tracer)
 
-    servicer = PromotionServicer(case, user_case, order_case, balance_case, tracer)
+    servicer = PromotionServicer(
+        case, user_case, order_case, balance_case, authentication_case, tracer
+    )
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     service.add_PromotionAPIServicer_to_server(servicer, server)
     logger.info("Listenning on port 50051.")

@@ -1,15 +1,10 @@
 "Cashback balance use case implementation."
-import datetime
 import logging
 import requests
-import uuid
-from decimal import Decimal
 
 from opentelemetry import trace
 
-from promotion import settings
 from promotion.entity import Balance
-from promotion.protocol import DiscountDataStore
 
 SERVER = trace.SpanKind.SERVER
 
@@ -17,6 +12,8 @@ logger = logging.getLogger(__name__)
 
 
 class BalanceUseCase:
+    """Implements cashback balance."""
+
     def __init__(self, order_use_case, balance, tracer) -> None:
         self.order = order_use_case
         self.balance_client = balance
@@ -39,6 +36,8 @@ class BalanceUseCase:
 
 
 class TokenAuth(requests.auth.AuthBase):
+    """Token based header authentication."""
+
     def __init__(self, token):
         self.token = token
 
@@ -48,6 +47,8 @@ class TokenAuth(requests.auth.AuthBase):
 
 
 class BalanceClient:
+    """HTTP client for balance API"""
+
     def __init__(self, token):
         self.auth = TokenAuth(token)
         self.url = (
@@ -55,6 +56,8 @@ class BalanceClient:
         )
 
     def cashback_balance_by_identity(self, identity):
+        """Cashback balance by identity."""
         response = requests.get(self.url.format(identity), auth=self.auth)
         if response.status_code == 200:
             return response.json()["body"]["credit"]
+        return None

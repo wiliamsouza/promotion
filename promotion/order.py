@@ -1,5 +1,4 @@
 "Order use case implementation."
-import datetime
 import logging
 import uuid
 from decimal import Decimal
@@ -21,6 +20,7 @@ class OrderUseCase:
     def __init__(self, store: DiscountDataStore, tracer) -> None:
         self.store = store
         self.tracer = tracer
+        self.percentage = 0
 
     def discount(self, _user_id: uuid.UUID) -> Discount:
         """Give zero discount this implementation do not follow the same discount rules."""
@@ -44,16 +44,17 @@ class OrderUseCase:
             return self.store.create(code, identity, amount, status, date)
 
     def calculate_cashback(self, amount_cents):
-        percentage = 10
+        """Calculate cashback based on amounts range."""
+        self.percentage = 10
 
         if 100000 < amount_cents <= 150000:
-            percentage = 15
+            self.percentage = 15
 
-        if 150000 < amount_cents:
-            percentage = 20
+        if amount_cents > 150000:
+            self.percentage = 20
 
-        amount = (percentage * amount_cents) / 100.0
-        return (int(amount), percentage)
+        amount = (self.percentage * amount_cents) / 100.0
+        return (int(amount), self.percentage)
 
     def list_approved_orders(self):
         """List approved orders."""

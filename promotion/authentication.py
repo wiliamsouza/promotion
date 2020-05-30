@@ -1,23 +1,24 @@
+"Authentication use case implementation."
 import calendar
 from datetime import datetime, timedelta
 import json
 from typing import Any
 
-from promotion import settings
-
 from argon2 import PasswordHasher
-from argon2.exceptions import VerifyMismatchError
 
 from jwcrypto import jwk, jwt
-from jwcrypto.common import JWException
-from jwcrypto.jwt import JWTExpired
 
 from opentelemetry import trace
+
+from promotion import settings
+
 
 SERVER = trace.SpanKind.SERVER
 
 
 class AuthenticationUseCase:
+    """Implements small subset of OAuth2 password grant with JWT."""
+
     def __init__(self, user_use_case, tracer) -> None:
         self.user = user_use_case
         self.tracer = tracer
