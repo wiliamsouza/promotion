@@ -12,6 +12,7 @@ from promotion.grpc.v1alpha2.promotion_api_pb2 import (
     ListOrderResponse,
     Order,
     RetrieveBalanceResponse,
+    AuthenticateResponse,
 )
 from promotion.grpc.v1alpha2.promotion_api_pb2_grpc import PromotionAPIServicer
 from promotion.protocol import Promotion
@@ -26,13 +27,14 @@ class PromotionServicer(PromotionAPIServicer):
 
     def __init__(self, promotion_use_case: Promotion,
                  user_use_case: UserUseCase, order_use_case: OrderUseCase,
-                 balance_use_case, tracer
+                 balance_use_case, authentication_use_case, tracer
                  ):
         self.balance_use_case = balance_use_case
         self.promotion_use_case = promotion_use_case
         self.user_use_case = user_use_case
         self.order_use_case = order_use_case
         self.tracer = tracer
+        self.authentication_use_case = authentication_use_case
 
     def RetrievePromotion(self, request, context):
         with self.tracer.start_as_current_span(
@@ -143,3 +145,11 @@ class PromotionServicer(PromotionAPIServicer):
 
             balance = self.balance_use_case.balance()
             return RetrieveBalanceResponse(balance=balance.total_amount)
+
+    def Authenticate(self, request, context):
+        with self.tracer.start_as_current_span(
+            "PromotionServicer.Authenticate", kind=SERVER
+        ):
+
+            id_token = self.authentication_use_case.authenticate(request.email, request.password)
+            return AuthenticateResponse(id_token=id_token)

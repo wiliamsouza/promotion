@@ -57,7 +57,7 @@ class OrderUseCase:
 
     def list_approved_orders(self):
         """List approved orders."""
-        with self.tracer.start_as_current_span("OrderUseCase.list_orders", kind=SERVER):
+        with self.tracer.start_as_current_span("OrderUseCase.list_approved_orders", kind=SERVER):
             return self.store.query_status("approved")
 
     def list_orders_with_cashback(self):
