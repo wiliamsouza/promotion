@@ -39,6 +39,11 @@ class PromotionAPIStub(object):
         request_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceRequest.SerializeToString,
         response_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceResponse.FromString,
         )
+    self.Authenticate = channel.unary_unary(
+        '/promotion.grpc.v1alpha2.PromotionAPI/Authenticate',
+        request_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.AuthenticateRequest.SerializeToString,
+        response_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.AuthenticateResponse.FromString,
+        )
 
 
 class PromotionAPIServicer(object):
@@ -85,6 +90,14 @@ class PromotionAPIServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Authenticate(self, request, context):
+    """Authenticate
+    This is used to authenticate user.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_PromotionAPIServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -112,6 +125,11 @@ def add_PromotionAPIServicer_to_server(servicer, server):
           servicer.RetrieveBalance,
           request_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceRequest.FromString,
           response_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.RetrieveBalanceResponse.SerializeToString,
+      ),
+      'Authenticate': grpc.unary_unary_rpc_method_handler(
+          servicer.Authenticate,
+          request_deserializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.AuthenticateRequest.FromString,
+          response_serializer=promotion_dot_grpc_dot_v1alpha2_dot_promotion__api__pb2.AuthenticateResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
