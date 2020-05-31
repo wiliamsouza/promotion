@@ -1,6 +1,5 @@
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit) [![CircleCI](https://circleci.com/gh/wiliamsouza/promotion.svg?style=shield)](https://app.circleci.com/pipelines/github/wiliamsouza/promotion?branch=master)
 
-
 # Promotion service
 
 Handle promotions for your ecommerce store.
@@ -8,9 +7,9 @@ Handle promotions for your ecommerce store.
 Implemented promotions:
 
 * Discount: Add a discount to your products.
-  - Birhtday: Date a person was born.
+  * Birhtday: Date a person was born.
 * Holiday: Configured date.
-  - Black friday: If it is the configured date.
+  * Black friday: If it is the configured date.
 
 Most popular types of sales promotions:
 
@@ -36,7 +35,7 @@ The figure below depicts how the solution was architected:
 
 and below how the source code was structured:
 
-```
+``` sh
 .
 ├── api
 │   └── ...
@@ -67,12 +66,12 @@ and below how the source code was structured:
   * `holiday.py`: Holiday use case implementation.
   * `__init__.py`: Promotion use case implementation.
   * `postgresql`: Postgresql data store implementation.
-    - `__init__.py`: SQLAlchemy model definition.
-    - `user.py`: User data store implementation.
+    * `__init__.py`: SQLAlchemy model definition.
+    * `user.py`: User data store implementation.
   * `protocol.py`: Interface definition using typing Protocol
   * `settings`: Environment variable data store implementation.
-    - `holiday.py`: Holiday data store implementation.
-    - `__init__.py`: Configuration settings.
+    * `holiday.py`: Holiday data store implementation.
+    * `__init__.py`: Configuration settings.
   * `user.py`: User use case implementation.
 * `tests`: gRPC protocol definition.
 
@@ -86,24 +85,28 @@ The main reason for this is to build a solution to middle-to-long tream.
 ## Local development
 
 Clone:
-```
+
+```sh
 git clone https://github.com/wiliamsouza/promotion.git
 
-```
+```sh
 The recomended way to get it is through https://github.com/wiliamsouza/maketplace
 
 Install:
-```
+
+```sh
 python setup.py develop
 ```
+
 This will install two commands:
 
 * promotionctl: Promotion control command line interface.
 * promotiond: Promotion daemon command line interface.
 
 Each command has it own help:
-```
-$ promotionctl 
+
+```sh
+$ promotionctl
 Usage: promotionctl [OPTIONS] COMMAND [ARGS]...
 
   Promotion control command line interface.
@@ -115,9 +118,10 @@ Commands:
   client    Clients for promotion and user.
   database  Database management commands.
 ```
+
 and:
 
-```
+```sh
 $ promotiond
 Usage: promotiond [OPTIONS] COMMAND [ARGS]...
 
@@ -132,13 +136,13 @@ Commands:
 
 Development requirements:
 
-```
+```sh
 pip install .[dev]
 ```
 
 Tests requirements:
 
-```
+```sh
 pip install .[test]
 ```
 
@@ -146,7 +150,7 @@ pip install .[test]
 
 Run `make` to see help.
 
-```
+```sh
 help                           Show Help
 security                       Run security code checks
 typping                        Run static type checker
@@ -158,7 +162,7 @@ install                        Install system wide
 
 Before run tests start database:
 
-```
+```sh
 docker-compose up
 ```
 
