@@ -19,7 +19,7 @@ setup(
         "opentelemetry-ext-jaeger==0.4a1",
         "opentelemetry-sdk==0.4a1",
         "argon2-cffi==20.1.0",
-        "jwcrypto==1.4",
+        "jwcrypto==1.5.6",
         "requests",
     ],
     extras_require={
