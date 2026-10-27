@@ -15,7 +15,7 @@ setup(
         "SQLAlchemy",
         "prettyconf",
         "googleapis-common-protos",
-        "opentelemetry-api==0.4a1",
+        "opentelemetry-api==1.45.1",
         "opentelemetry-ext-jaeger==0.4a1",
         "opentelemetry-sdk==0.4a1",
         "argon2-cffi==20.1.0",
